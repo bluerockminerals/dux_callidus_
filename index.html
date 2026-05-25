@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUX CALLIDUS S.R.L. - Maquinaria Pesada</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --negro: #1a1a1a;
+            --negro-claro: #2d2d2d;
+            --dorado: #D4AF37;
+            --dorado-claro: #F4D03F;
+            --dorado-oscuro: #B8941F;
+            --blanco: #ffffff;
+            --gris-claro: #f8f8f8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--negro);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 5%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover img {
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+            transform: scale(1.05);
+        }
+
+        .navbar.scrolled .logo img {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--negro);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--dorado);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--dorado);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--dorado);
+            color: var(--negro);
+            padding: 0.7rem 1.8rem;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--dorado);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--dorado);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dorado);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            height: 100vh;
+            background: url('portada.png') center center/cover no-repeat;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 10vh;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 0;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--blanco);
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease;
+            margin-top: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            display: none;
+        }
+
+        .hero-logo {
+            width: 100%;
+            max-width: 550px;
+            height: auto;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.35rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--dorado);
+            color: var(--negro);
+            border: 2px solid var(--dorado);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--dorado);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--blanco);
+            border: 2px solid var(--blanco);
+        }
+
+        .btn-secondary:hover {
+            background: var(--blanco);
+            color: var(--negro);
+            transform: translateY(-3px);
+        }
+
+        .section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--negro);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--dorado-oscuro) 0%, var(--dorado-claro) 50%, var(--dorado-oscuro) 100%);
+            margin: 1.5rem auto;
+            box-shadow: 0 2px 15px rgba(212, 175, 55, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 2px 15px rgba(212, 175, 55, 0.5);
+            }
+            50% {
+                box-shadow: 0 2px 25px rgba(212, 175, 55, 0.8);
+            }
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--blanco);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--dorado) 0%, var(--dorado-claro) 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--dorado);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.08) translateY(-5px);
+            filter: drop-shadow(0 8px 16px rgba(212, 175, 55, 0.4));
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--negro);
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .about-section {
+            background: var(--gris-claro);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: stretch;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--negro);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--dorado);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blanco);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-item span {
+            font-weight: 600;
+            color: var(--negro);
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 100%;
+            min-height: 550px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 550px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(248, 248, 248, 1) 0%, rgba(248, 248, 248, 0.8) 30%, rgba(248, 248, 248, 0) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .machinery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .machinery-card {
+            background: var(--blanco);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .machinery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
+            border-color: var(--dorado);
+        }
+
+        .machinery-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--negro-claro) 0%, var(--negro) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dorado);
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .machinery-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+        }
+
+        .machinery-image i {
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 20px rgba(212, 175, 55, 0.6));
+        }
+
+        .machinery-content {
+            padding: 1.5rem;
+        }
+
+        .machinery-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--negro);
+        }
+
+        .machinery-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .machinery-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(244, 208, 63, 0.2) 100%);
+            color: var(--dorado-oscuro);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--dorado);
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .contact-section {
+            background: var(--negro);
+            color: var(--blanco);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dorado);
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--dorado);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--negro);
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: var(--negro-claro);
+            padding: 2.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(200, 160, 96, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dorado);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid rgba(200, 160, 96, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--blanco);
+            border-radius: 5px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--dorado);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--dorado);
+            color: var(--negro);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--dorado-oscuro);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: var(--negro-claro);
+            color: var(--blanco);
+            text-align: center;
+            padding: 2rem 5%;
+            border-top: 2px solid rgba(212, 175, 55, 0.4);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, var(--dorado-oscuro) 0%, var(--dorado) 50%, var(--dorado-claro) 100%);
+            padding: 4rem 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            color: var(--negro);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.98);
+                width: 100%;
+                padding: 2rem;
+                transition: left 0.3s ease;
+                gap: 1.5rem;
+                border-top: 1px solid rgba(212, 175, 55, 0.3);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding-top: 8vh;
+            }
+
+            .hero-logo {
+                max-width: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="#" class="logo">
+                    <img src="logo_dux_trazado-02.png" alt="DUX CALLIDUS Logo">
+                </a>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#maquinaria">Maquinaria</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto" class="cta-button">Contacto</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <img src="logo_completo.png" alt="DUX CALLIDUS" class="hero-logo">
+            <p>Soluciones integrales en maquinaria pesada para la industria boliviana</p>
+            <div class="hero-buttons">
+                <a href="#servicios" class="btn-primary">Nuestros Servicios</a>
+                <a href="#contacto" class="btn-secondary">Solicitar Cotización</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Años de Experiencia</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Proyectos Completados</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Equipos Disponibles</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Satisfacción</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="servicios">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <p class="section-subtitle">Ofrecemos soluciones completas en maquinaria pesada, adaptadas a las necesidades de cada proyecto</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>Alquiler de Maquinaria</h3>
+                <p>Amplia flota de equipos pesados disponibles para alquiler por día, semana o mes. Todas las máquinas en óptimas condiciones y con mantenimiento actualizado.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3>Venta de Equipos</h3>
+                <p>Importación y venta de maquinaria pesada nueva y seminueva de las mejores marcas internacionales. Asesoría personalizada en tu compra.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Mantenimiento</h3>
+                <p>Servicio técnico especializado y mantenimiento preventivo y correctivo. Garantizamos el funcionamiento óptimo de tus equipos.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Asesoría Técnica</h3>
+                <p>Personal calificado para brindarte asesoría en la selección del equipo ideal para tu proyecto. Evaluación de necesidades y costos.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h3>Inspección de Equipos</h3>
+                <p>Servicio de inspección técnica y certificación de equipos. Aseguramos que tu maquinaria cumpla con todos los estándares de seguridad.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3>Logística y Transporte</h3>
+                <p>Servicio de transporte especializado para maquinaria pesada. Entrega segura y puntual en todo el territorio nacional.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about-section" id="nosotros">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Sobre DUX CALLIDUS S.R.L.</h2>
+                <p>Somos una empresa boliviana especializada en la importación, venta y alquiler de maquinaria pesada. Con más de una década de experiencia en el sector, nos hemos consolidado como líderes en la provisión de equipos de alta calidad para la industria de la construcción y minería.</p>
+                <p>Nuestra misión es proporcionar soluciones integrales que impulsen el desarrollo de proyectos de infraestructura en Bolivia, garantizando calidad, seguridad y eficiencia en cada uno de nuestros servicios.</p>
+                
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <span>Calidad garantizada en todos nuestros equipos</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <span>Disponibilidad 24/7 para emergencias</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <span>Equipos con certificaciones internacionales</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <span>Atención personalizada y profesional</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-image">
+                <img src="sobre.png" alt="DUX CALLIDUS Maquinaria">
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="maquinaria">
+        <h2 class="section-title">Nuestra Maquinaria</h2>
+        <p class="section-subtitle">Contamos con una amplia variedad de equipos pesados de última generación</p>
+        
+        <div class="machinery-grid">
+            <div class="machinery-card">
+                <div class="machinery-image">
+                    <i class="fas fa-tractor"></i>
+                </div>
+                <div class="machinery-content">
+                    <h3>Excavadoras</h3>
+                    <p>Excavadoras hidráulicas de diferentes tamaños y capacidades para todo tipo de proyectos.</p>
+                    <span class="machinery-tag">Venta • Alquiler</span>
+                </div>
+            </div>
+
+            <div class="machinery-card">
+                <div class="machinery-image">
+                    <i class="fas fa-truck-moving"></i>
+                </div>
+                <div class="machinery-content">
+                    <h3>Cargadores Frontales</h3>
+                    <p>Equipos robustos para carga y descarga de materiales pesados con gran eficiencia.</p>
+                    <span class="machinery-tag">Venta • Alquiler</span>
+                </div>
+            </div>
+
+            <div class="machinery-card">
+                <div class="machinery-image">
+                    <i class="fas fa-truck-monster"></i>
+                </div>
+                <div class="machinery-content">
+                    <h3>Retroexcavadoras</h3>
+                    <p>Versátiles máquinas multifunción ideales para excavación y carga de materiales.</p>
+                    <span class="machinery-tag">Venta • Alquiler</span>
+                </div>
+            </div>
+
+            <div class="machinery-card">
+                <div class="machinery-image">
+                    <i class="fas fa-truck-loading"></i>
+                </div>
+                <div class="machinery-content">
+                    <h3>Motoniveladoras</h3>
+                    <p>Equipos especializados para nivelación de terrenos y construcción de carreteras.</p>
+                    <span class="machinery-tag">Venta • Alquiler</span>
+                </div>
+            </div>
+
+            <div class="machinery-card">
+                <div class="machinery-image">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <div class="machinery-content">
+                    <h3>Compactadoras</h3>
+                    <p>Rodillos compactadores para obras viales y compactación de suelos.</p>
+                    <span class="machinery-tag">Venta • Alquiler</span>
+                </div>
+            </div>
+
+            <div class="machinery-card">
+                <div class="machinery-image">
+                    <i class="fas fa-dolly"></i>
+                </div>
+                <div class="machinery-content">
+                    <h3>Minicargadores</h3>
+                    <p>Equipos compactos y ágiles para trabajos en espacios reducidos.</p>
+                    <span class="machinery-tag">Venta • Alquiler</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact-section" id="contacto">
+        <div class="contact-content">
+            <div class="contact-info">
+                <h2>Contáctanos</h2>
+                <p>Estamos listos para atender tus consultas y brindarte la mejor asesoría para tu proyecto. Contáctanos hoy mismo.</p>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <strong>Dirección</strong><br>
+                        La Paz, Bolivia
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <strong>Teléfono</strong><br>
+                        +591 2 XXXXXXX
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <strong>Email</strong><br>
+                        info@duxcallidus.com
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <strong>Horario</strong><br>
+                        Lunes a Viernes: 8:00 - 18:00<br>
+                        Sábados: 8:00 - 13:00
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nombre completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Asunto</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 DUX CALLIDUS S.R.L. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por contactarnos! Nos pondremos en contacto contigo pronto.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
