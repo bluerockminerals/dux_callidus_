@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DUX CALLIDUS S.R.L. - Maquinaria Pesada</title>
+  <link rel="icon" type="image/png" href="icono_dux.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── RESET ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', sans-serif; color: #333; background: #fff; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a  { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(10,10,10,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 72px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: background .3s;
+    }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 44px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: #ccc;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .78rem; font-weight: 500;
+      letter-spacing: .12em; text-transform: uppercase;
+      transition: color .2s; position: relative; padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: #e8a020; transition: width .25s;
+    }
+    .nav-links a:hover { color: #e8a020; }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { width: 25px; height: 2px; background: #e8a020; display: block; transition: .3s; }
+    .mobile-menu {
+      display: none; position: fixed; top: 72px; left: 0; right: 0;
+      background: rgba(8,8,8,.98); z-index: 999;
+      flex-direction: column; padding: 1.5rem 5%;
+      border-bottom: 1px solid rgba(232,160,32,.2);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: #ccc; font-family: 'Montserrat', sans-serif;
+      font-size: .9rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .12em;
+      padding: .9rem 0; border-bottom: 1px solid rgba(255,255,255,.06);
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: #e8a020; }
+
+    /* ── HERO ── */
+    #inicio {
+      min-height: 100vh;
+      position: relative;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 100px 5% 80px;
+      overflow: hidden;
+    }
+    .hero-bg-img {
+      position: absolute; inset: 0; z-index: 0;
+      background: url('portada.png') center center / cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(160deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.52) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
+    .hero-logo {
+      width: 290px; max-width: 70vw; margin-bottom: 2rem;
+      filter: drop-shadow(0 6px 28px rgba(0,0,0,.7));
+      animation: fadeDown .9s ease both;
+    }
+    .hero-tagline {
+      color: rgba(255,255,255,.88);
+      font-size: clamp(.95rem, 2.4vw, 1.2rem);
+      font-weight: 300; letter-spacing: .05em;
+      margin-bottom: 2.5rem; max-width: 520px; line-height: 1.7;
+      animation: fadeDown .9s .15s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      justify-content: center; margin-bottom: 5rem;
+      animation: fadeDown .9s .3s ease both;
+    }
+    .btn-gold {
+      background: #e8a020; color: #111;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .78rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      padding: .9rem 2.2rem; border: none; cursor: pointer;
+      display: inline-block; transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .btn-gold:hover { background: #f5b234; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(232,160,32,.35); }
+    .btn-outline-w {
+      background: transparent; color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .78rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      padding: .9rem 2.2rem; border: 2px solid rgba(255,255,255,.55);
+      display: inline-block; transition: border-color .2s, color .2s, transform .2s;
+    }
+    .btn-outline-w:hover { border-color: #e8a020; color: #e8a020; transform: translateY(-3px); }
+
+    /* hero stats */
+    .hero-stats {
+      display: flex; gap: 3.5rem; flex-wrap: wrap; justify-content: center;
+      animation: fadeDown .9s .45s ease both;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-n {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.1rem; font-weight: 800; color: #e8a020; line-height: 1;
+    }
+    .hero-stat-l {
+      font-size: .7rem; color: rgba(255,255,255,.6);
+      letter-spacing: .08em; text-transform: uppercase; margin-top: .3rem;
+    }
+
+    /* ── SECTION SHARED ── */
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-header p.lead {
+      color: #777; font-size: .93rem;
+      max-width: 520px; margin: .85rem auto 0; line-height: 1.75;
+    }
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.55rem, 3.5vw, 2.2rem);
+      font-weight: 800; color: #111;
+      text-transform: uppercase; letter-spacing: .04em;
+    }
+    .gold-bar { width: 52px; height: 4px; background: #e8a020; margin: 1rem auto 0; }
+
+    /* ── SERVICIOS ── */
+    #servicios { padding: 90px 5%; background: #f7f7f7; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.4rem;
+    }
+    .service-card {
+      background: #fff; border: 1px solid #e5e5e5;
+      border-top: 4px solid #e8a020;
+      padding: 2.2rem 1.8rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 14px 38px rgba(0,0,0,.1); }
+    .service-icon { font-size: 2.3rem; margin-bottom: 1rem; }
+    .service-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .9rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .07em;
+      color: #111; margin-bottom: .75rem;
+    }
+    .service-card p { color: #666; font-size: .87rem; line-height: 1.75; }
+
+    /* ── INGENIERÍA CIVIL (nueva sección) ── */
+    #ingenieria { padding: 90px 5%; background: #111; }
+    #ingenieria h2 { color: #fff; }
+    #ingenieria .section-header p.lead { color: #888; }
+    .civil-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.4rem;
+    }
+    .civil-card {
+      background: #1a1a1a; border: 1px solid #2a2a2a;
+      border-left: 4px solid #e8a020;
+      padding: 2rem 1.8rem;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .civil-card:hover {
+      transform: translateY(-6px);
+      border-color: #e8a020;
+      box-shadow: 0 14px 38px rgba(232,160,32,.12);
+    }
+    .civil-icon { font-size: 2.3rem; margin-bottom: 1rem; }
+    .civil-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .9rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .07em;
+      color: #e8a020; margin-bottom: .75rem;
+    }
+    .civil-card p { color: #888; font-size: .87rem; line-height: 1.75; }
+
+    /* ── NOSOTROS ── */
+    #nosotros {
+      padding: 90px 5%; background: #fff;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .about-text h2 { text-align: left; }
+    .about-text .gold-bar { margin: 1rem 0 0; }
+    .about-text p { color: #555; line-height: 1.8; margin-top: 1.4rem; font-size: .92rem; }
+    .about-checks { list-style: none; margin-top: 1.8rem; }
+    .about-checks li {
+      display: flex; align-items: center; gap: .8rem;
+      padding: .6rem 0; border-bottom: 1px solid #f0f0f0;
+      font-size: .9rem; color: #444;
+    }
+    .about-checks li::before {
+      content: '✓'; background: #e8a020; color: #fff;
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .68rem; font-weight: 700; flex-shrink: 0;
+    }
+    .about-img { position: relative; overflow: hidden; }
+    .about-img img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      display: block; transition: transform .5s;
+    }
+    .about-img:hover img { transform: scale(1.03); }
+
+    /* ── MAQUINARIA ── */
+    #maquinaria { padding: 90px 5%; background: #f7f7f7; }
+    .machinery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+      gap: 1.4rem;
+    }
+    .mach-card {
+      background: #fff; border: 1px solid #e5e5e5;
+      overflow: hidden; transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .mach-card:hover { transform: translateY(-6px); box-shadow: 0 14px 38px rgba(0,0,0,.1); border-color: #e8a020; }
+    .mach-thumb {
+      height: 170px; background: #f0f0f0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.8rem; border-bottom: 3px solid #e8a020;
+    }
+    .mach-body { padding: 1.4rem; }
+    .mach-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .9rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .07em;
+      color: #111; margin-bottom: .5rem;
+    }
+    .mach-card p { color: #666; font-size: .83rem; line-height: 1.65; margin-bottom: 1rem; }
+    .mach-tags { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .mach-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .63rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .22rem .7rem;
+      background: rgba(232,160,32,.12); color: #c17f10;
+      border: 1px solid rgba(232,160,32,.35);
+    }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      padding: 90px 5%; background: #fff;
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+    }
+    .contact-info h2 { text-align: left; }
+    .contact-info .gold-bar { margin: 1rem 0 0; }
+    .contact-info > p { color: #666; font-size: .9rem; margin-top: 1.2rem; line-height: 1.75; }
+    .contact-items { margin-top: 2.4rem; display: flex; flex-direction: column; gap: 1.4rem; }
+    .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .c-icon {
+      width: 44px; height: 44px; background: #e8a020;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; flex-shrink: 0;
+    }
+    .contact-item h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: #111; margin-bottom: .3rem;
+    }
+    .contact-item p { color: #666; font-size: .85rem; line-height: 1.6; }
+
+    /* form */
+    .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; }
+    .form-group label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .12em; color: #555;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: .78rem 1rem;
+      border: 1px solid #ddd; background: #fafafa;
+      font-family: 'Open Sans', sans-serif;
+      font-size: .88rem; color: #333; outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: #e8a020; background: #fff; }
+    .form-group textarea { height: 130px; resize: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d0d0d; border-top: 3px solid #e8a020;
+      padding: 2rem 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { height: 30px; width: auto; opacity: .9; }
+    footer p { color: #555; font-size: .8rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a {
+      color: #555; font-family: 'Montserrat', sans-serif;
+      font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: #e8a020; }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── KEYFRAMES ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      #nosotros, #contacto { grid-template-columns: 1fr; gap: 3rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2rem; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-btns { flex-direction: column; align-items: center; }
+      .hero-logo { width: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <img src="icono_dux.png" alt="DUX CALLIDUS">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#ingenieria">Ing. Civil</a></li>
+    <li><a href="#maquinaria">Maquinaria</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio"     onclick="toggleMenu()">Inicio</a>
+  <a href="#servicios"  onclick="toggleMenu()">Servicios</a>
+  <a href="#ingenieria" onclick="toggleMenu()">Ing. Civil</a>
+  <a href="#maquinaria" onclick="toggleMenu()">Maquinaria</a>
+  <a href="#nosotros"   onclick="toggleMenu()">Nosotros</a>
+  <a href="#contacto"   onclick="toggleMenu()">Contacto</a>
+</div>
+
+<!-- ── HERO ── -->
+<section id="inicio">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img class="hero-logo" src="logo_Dux_Callidus.png" alt="DUX CALLIDUS">
+    <p class="hero-tagline">Soluciones integrales en maquinaria pesada e ingeniería civil para la industria boliviana</p>
+    <div class="hero-btns">
+      <a href="#servicios" class="btn-gold">Nuestros Servicios</a>
+      <a href="#contacto"  class="btn-outline-w">Solicitar Cotización</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-n">15+</div>
+        <div class="hero-stat-l">Años de Experiencia</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">500+</div>
+        <div class="hero-stat-l">Proyectos Completados</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">50+</div>
+        <div class="hero-stat-l">Equipos Disponibles</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">100%</div>
+        <div class="hero-stat-l">Satisfacción</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICIOS ── -->
+<section id="servicios">
+  <div class="section-header reveal">
+    <h2>Nuestros Servicios</h2>
+    <div class="gold-bar"></div>
+    <p class="lead">Ofrecemos soluciones completas en maquinaria pesada, adaptadas a las necesidades de cada proyecto</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🏗️</div>
+      <h3>Alquiler de Maquinaria</h3>
+      <p>Amplia flota de equipos pesados disponibles para alquiler por día, semana o mes. Todas las máquinas en óptimas condiciones y con mantenimiento actualizado.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🚜</div>
+      <h3>Venta de Equipos</h3>
+      <p>Importación y venta de maquinaria pesada nueva y seminueva de las mejores marcas internacionales. Asesoría personalizada en tu compra.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🔧</div>
+      <h3>Mantenimiento</h3>
+      <p>Servicio técnico especializado y mantenimiento preventivo y correctivo. Garantizamos el funcionamiento óptimo de tus equipos.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">📋</div>
+      <h3>Asesoría Técnica</h3>
+      <p>Personal calificado para brindarte asesoría en la selección del equipo ideal para tu proyecto. Evaluación de necesidades y costos.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🔍</div>
+      <h3>Inspección de Equipos</h3>
+      <p>Servicio de inspección técnica y certificación de equipos. Aseguramos que tu maquinaria cumpla con todos los estándares de seguridad.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🚛</div>
+      <h3>Logística y Transporte</h3>
+      <p>Servicio de transporte especializado para maquinaria pesada. Entrega segura y puntual en todo el territorio nacional.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── INGENIERÍA CIVIL (nueva sección) ── -->
+<section id="ingenieria">
+  <div class="section-header reveal">
+    <h2>Servicios de Ingeniería Civil</h2>
+    <div class="gold-bar"></div>
+    <p class="lead">Brindamos soluciones integrales de ingeniería civil con profesionales altamente capacitados para el desarrollo de infraestructura en Bolivia</p>
+  </div>
+  <div class="civil-grid">
+    <div class="civil-card reveal">
+      <div class="civil-icon">🏛️</div>
+      <h3>Diseño Estructural</h3>
+      <p>Diseño y cálculo estructural de edificaciones, puentes y obras de infraestructura bajo las normas técnicas bolivianas e internacionales vigentes.</p>
+    </div>
+    <div class="civil-card reveal">
+      <div class="civil-icon">🛤️</div>
+      <h3>Vías y Carreteras</h3>
+      <p>Diseño, construcción y rehabilitación de caminos, carreteras y vías urbanas. Estudios de tráfico, topografía y pavimentación.</p>
+    </div>
+    <div class="civil-card reveal">
+      <div class="civil-icon">💧</div>
+      <h3>Obras Hidráulicas</h3>
+      <p>Proyectos de sistemas de agua potable, alcantarillado, drenaje pluvial, canales de riego y obras de control de inundaciones.</p>
+    </div>
+    <div class="civil-card reveal">
+      <div class="civil-icon">🏔️</div>
+      <h3>Movimiento de Tierras</h3>
+      <p>Planificación y ejecución de movimiento de tierras a gran escala para plataformas, explanaciones, cortes y rellenos en proyectos de construcción.</p>
+    </div>
+    <div class="civil-card reveal">
+      <div class="civil-icon">📐</div>
+      <h3>Supervisión de Obras</h3>
+      <p>Supervisión técnica y control de calidad en todas las etapas de la obra. Garantizamos el cumplimiento de especificaciones y plazos.</p>
+    </div>
+    <div class="civil-card reveal">
+      <div class="civil-icon">📊</div>
+      <h3>Estudios y Proyectos</h3>
+      <p>Elaboración de estudios de factibilidad, impacto ambiental, presupuestos y cronogramas para proyectos de infraestructura civil.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── NOSOTROS ── -->
+<section id="nosotros">
+  <div class="about-text reveal">
+    <h2>Sobre DUX CALLIDUS S.R.L.</h2>
+    <div class="gold-bar"></div>
+    <p>Somos una empresa boliviana especializada en la importación, venta y alquiler de maquinaria pesada. Con más de una década de experiencia en el sector, nos hemos consolidado como líderes en la provisión de equipos de alta calidad para la industria de la construcción y minería.</p>
+    <p>Nuestra misión es proporcionar soluciones integrales que impulsen el desarrollo de proyectos de infraestructura en Bolivia, garantizando calidad, seguridad y eficiencia en cada uno de nuestros servicios.</p>
+    <ul class="about-checks">
+      <li>Calidad garantizada en todos nuestros equipos</li>
+      <li>Disponibilidad 24/7 para emergencias</li>
+      <li>Equipos con certificaciones internacionales</li>
+      <li>Atención personalizada y profesional</li>
+    </ul>
+  </div>
+  <div class="about-img reveal">
+    <img src="Sobre_DUX_CALLIDUS.png" alt="DUX CALLIDUS Maquinaria">
+  </div>
+</section>
+
+<!-- ── MAQUINARIA ── -->
+<section id="maquinaria">
+  <div class="section-header reveal">
+    <h2>Nuestra Maquinaria</h2>
+    <div class="gold-bar"></div>
+    <p class="lead">Contamos con una amplia variedad de equipos pesados de última generación</p>
+  </div>
+  <div class="machinery-grid">
+    <div class="mach-card reveal">
+      <div class="mach-thumb">🚧</div>
+      <div class="mach-body">
+        <h3>Excavadoras</h3>
+        <p>Excavadoras hidráulicas de diferentes tamaños y capacidades para todo tipo de proyectos.</p>
+        <div class="mach-tags"><span class="mach-tag">Venta</span><span class="mach-tag">Alquiler</span></div>
+      </div>
+    </div>
+    <div class="mach-card reveal">
+      <div class="mach-thumb">🏗️</div>
+      <div class="mach-body">
+        <h3>Cargadores Frontales</h3>
+        <p>Equipos robustos para carga y descarga de materiales pesados con gran eficiencia.</p>
+        <div class="mach-tags"><span class="mach-tag">Venta</span><span class="mach-tag">Alquiler</span></div>
+      </div>
+    </div>
+    <div class="mach-card reveal">
+      <div class="mach-thumb">🚜</div>
+      <div class="mach-body">
+        <h3>Retroexcavadoras</h3>
+        <p>Versátiles máquinas multifunción ideales para excavación y carga de materiales.</p>
+        <div class="mach-tags"><span class="mach-tag">Venta</span><span class="mach-tag">Alquiler</span></div>
+      </div>
+    </div>
+    <div class="mach-card reveal">
+      <div class="mach-thumb">🛣️</div>
+      <div class="mach-body">
+        <h3>Motoniveladoras</h3>
+        <p>Equipos especializados para nivelación de terrenos y construcción de carreteras.</p>
+        <div class="mach-tags"><span class="mach-tag">Venta</span><span class="mach-tag">Alquiler</span></div>
+      </div>
+    </div>
+    <div class="mach-card reveal">
+      <div class="mach-thumb">⚙️</div>
+      <div class="mach-body">
+        <h3>Compactadoras</h3>
+        <p>Rodillos compactadores para obras viales y compactación de suelos.</p>
+        <div class="mach-tags"><span class="mach-tag">Venta</span><span class="mach-tag">Alquiler</span></div>
+      </div>
+    </div>
+    <div class="mach-card reveal">
+      <div class="mach-thumb">🔩</div>
+      <div class="mach-body">
+        <h3>Minicargadores</h3>
+        <p>Equipos compactos y ágiles para trabajos en espacios reducidos.</p>
+        <div class="mach-tags"><span class="mach-tag">Venta</span><span class="mach-tag">Alquiler</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACTO ── -->
+<section id="contacto">
+  <div class="contact-info reveal">
+    <h2>Contáctanos</h2>
+    <div class="gold-bar"></div>
+    <p>Estamos listos para atender tus consultas y brindarte la mejor asesoría para tu proyecto. Contáctanos hoy mismo.</p>
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="c-icon">📍</div>
+        <div><h4>Dirección</h4><p>La Paz, Bolivia</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">📞</div>
+        <div><h4>Teléfono</h4><p>+591 2 XXXXXXX</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">✉️</div>
+        <div><h4>Email</h4><p>info@duxcallidus.com</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">🕐</div>
+        <div><h4>Horario</h4><p>Lunes a Viernes: 8:00 – 18:00<br>Sábados: 8:00 – 13:00</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form reveal">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nombre completo</label>
+        <input type="text" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="tu@email.com">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Teléfono</label>
+      <input type="tel" placeholder="+591 7XXXXXXX">
+    </div>
+    <div class="form-group">
+      <label>Asunto</label>
+      <input type="text" placeholder="¿En qué podemos ayudarte?">
+    </div>
+    <div class="form-group">
+      <label>Mensaje</label>
+      <textarea placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+    </div>
+    <button class="btn-gold" onclick="handleSubmit(this)">Enviar Mensaje</button>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img class="footer-logo" src="icono_dux.png" alt="DUX CALLIDUS">
+  <p>© 2024 DUX CALLIDUS S.R.L. Todos los derechos reservados.</p>
+  <div class="footer-links">
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#ingenieria">Ing. Civil</a>
+    <a href="#maquinaria">Maquinaria</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</footer>
+
+<script>
+  // ── Hamburger ──
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // ── Reveal on scroll ──
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 90);
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // ── Nav shadow on scroll ──
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.boxShadow = window.scrollY > 40
+      ? '0 4px 24px rgba(0,0,0,.5)'
+      : 'none';
+  });
+
+  // ── Form submit feedback ──
+  function handleSubmit(btn) {
+    btn.textContent = '✓ Mensaje enviado';
+    btn.style.background = '#2e7d52';
+    setTimeout(() => {
+      btn.textContent = 'Enviar Mensaje';
+      btn.style.background = '';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
