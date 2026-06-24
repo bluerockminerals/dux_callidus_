@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machinery 4 Export | Heavy Equipment Global Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C8922A;--gold-light:#E8B84B;--gold-dark:#8A611A;--black:#0A0A0A;--dark:#111214;--dark2:#1A1C20;--dark3:#242628;--steel:#2C2F35;--muted:#6B7280;--white:#F5F4F0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Barlow",sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(10,10,10,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(200,146,42,.15);transition:border-color .3s}
+.logo{display:flex;align-items:center;cursor:pointer;background:none;border:none;padding:0;text-decoration:none}
+.logo img{height:44px;width:auto;display:block;transition:opacity .2s}
+.logo:hover img{opacity:.85}
+.logo-icon{display:none}
+footer .logo img{height:34px}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-link-btn{font-size:.85rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;font-family:"Barlow",sans-serif;transition:color .2s}
+.nav-link-btn:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--black);padding:.55rem 1.4rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .2s;border:none;cursor:pointer;font-family:"Barlow Condensed",sans-serif;font-size:.85rem}
+.nav-cta:hover{background:var(--gold-light)}
+.lang-wrapper{position:relative}
+.lang-btn{display:flex;align-items:center;gap:.4rem;background:transparent;border:1px solid var(--steel);color:var(--muted);padding:.42rem .85rem;font-family:"Barlow Condensed",sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%)}
+.lang-btn:hover,.lang-btn.active{border-color:var(--gold);color:var(--gold)}
+.lang-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+.lang-dropdown{position:absolute;top:calc(100% + 10px);right:0;background:var(--dark2);border:1px solid var(--steel);min-width:155px;z-index:300;display:none;flex-direction:column}
+.lang-dropdown.open{display:flex}
+.lang-option{display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem;font-family:"Barlow Condensed",sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;color:var(--muted);cursor:pointer;border:none;background:transparent;text-align:left;width:100%;transition:all .15s;border-bottom:1px solid rgba(44,47,53,.6)}
+.lang-option:last-child{border-bottom:none}
+.lang-option:hover{background:var(--dark3);color:var(--white)}
+.lang-option.selected{color:var(--gold);background:rgba(200,146,42,.07)}
+.trans-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--gold);z-index:999;transform-origin:left;transform:scaleX(0);transition:transform .4s ease}
+.trans-bar.run{transform:scaleX(.85)}
+.trans-bar.done{transform:scaleX(1);transition:transform .1s ease}
+.page{display:none;min-height:100vh;padding-top:72px}
+.page.active{display:block}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding:0 4rem 5rem}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,.98) 40%,rgba(10,10,10,.5) 100%),url("https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&q=80") center/cover no-repeat}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--black) 0%,transparent 40%)}
+.hero-label{position:relative;z-index:2;font-family:"Barlow Condensed",sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+.hero-label::before{content:"";display:block;width:32px;height:2px;background:var(--gold)}
+.hero h1{position:relative;z-index:2;font-family:"Barlow Condensed",sans-serif;font-size:clamp(3.5rem,8vw,7rem);font-weight:900;line-height:.92;text-transform:uppercase;margin-bottom:1.5rem;max-width:700px}
+.hero h1 em{font-style:normal;color:var(--gold);display:block}
+.hero-sub{position:relative;z-index:2;font-size:1.05rem;color:rgba(245,244,240,.6);max-width:480px;line-height:1.65;margin-bottom:2.5rem}
+.hero-actions{position:relative;z-index:2;display:flex;gap:1rem;align-items:center}
+.btn-primary{background:var(--gold);color:var(--black);padding:.9rem 2.2rem;font-family:"Barlow Condensed",sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background .2s,transform .15s;border:none;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-ghost{color:var(--white);font-family:"Barlow Condensed",sans-serif;font-size:1rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem;padding-bottom:2px;transition:color .2s,border-color .2s;background:none;border:none;border-bottom:1px solid rgba(245,244,240,.3);cursor:pointer}
+.btn-ghost:hover{color:var(--gold);border-color:var(--gold)}
+.hero-stats{position:absolute;bottom:5rem;right:4rem;z-index:2;display:flex;flex-direction:column;gap:1.2rem}
+.stat-item{text-align:right}
+.stat-num{font-family:"Barlow Condensed",sans-serif;font-size:2.4rem;font-weight:900;color:var(--gold);line-height:1}
+.stat-label{font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.scroll-indicator{position:absolute;bottom:2.5rem;left:4rem;z-index:2;display:flex;align-items:center;gap:.75rem}
+.scroll-line{width:40px;height:1px;background:rgba(245,244,240,.3);position:relative;overflow:hidden}
+.scroll-line::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gold);animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{from{left:-100%}to{left:100%}}
+.scroll-text{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,244,240,.4)}
+.ticker{background:var(--gold);padding:.65rem 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-flex;gap:3rem;animation:ticker 25s linear infinite}
+.ticker span{font-family:"Barlow Condensed",sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--black)}
+.ticker-dot{color:rgba(10,10,10,.4) !important}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.section-label{font-family:"Barlow Condensed",sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.75rem;margin-bottom:1.2rem}
+.section-label::before{content:"";width:24px;height:2px;background:var(--gold)}
+.section-title{font-family:"Barlow Condensed",sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;text-transform:uppercase;line-height:.95}
+.line-divider{height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.3}
+.about-wrap{background:var(--dark);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;padding:6rem 4rem}
+.about-img{position:relative}
+.about-img img{width:100%;height:480px;object-fit:cover;display:block;filter:grayscale(20%)}
+.about-img-frame{position:absolute;top:-20px;right:-20px;width:100%;height:100%;border:2px solid var(--gold);z-index:-1}
+.about-badge{position:absolute;bottom:-20px;left:-20px;background:var(--gold);padding:1.2rem 1.5rem;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)}
+.about-badge-num{font-family:"Barlow Condensed",sans-serif;font-size:2.2rem;font-weight:900;color:var(--black);line-height:1}
+.about-badge-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(10,10,10,.65)}
+.about-text p{color:rgba(245,244,240,.65);line-height:1.75;margin-bottom:1.5rem;font-size:1.05rem}
+.about-text .section-title{margin-bottom:1.5rem}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.feature-item{display:flex;align-items:flex-start;gap:.75rem;padding:1rem;background:var(--dark2);border-left:3px solid var(--gold)}
+.feature-item svg{flex-shrink:0;width:20px;height:20px;fill:var(--gold);margin-top:2px}
+.feature-item strong{display:block;font-family:"Barlow Condensed",sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--white);margin-bottom:.2rem}
+.feature-item span{font-size:.82rem;color:var(--muted)}
+.services-wrap{background:var(--black);padding:6rem 4rem}
+.services-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--steel)}
+.service-card{background:var(--dark);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:background .3s;cursor:default}
+.service-card::before{content:"";position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.service-card:hover{background:var(--dark2)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-icon{width:52px;height:52px;background:rgba(200,146,42,.12);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%)}
+.service-icon svg{width:26px;height:26px;fill:var(--gold)}
+.service-num{font-family:"Barlow Condensed",sans-serif;font-size:4rem;font-weight:900;color:rgba(200,146,42,.06);position:absolute;top:1rem;right:1.5rem;line-height:1;pointer-events:none}
+.service-card h3{font-family:"Barlow Condensed",sans-serif;font-size:1.2rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem}
+.service-card p{font-size:.88rem;color:var(--muted);line-height:1.65}
+.service-detail{margin-top:1rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark)}
+.inv-page-wrap{background:var(--dark);min-height:100vh;padding:3rem 4rem 6rem}
+.inv-page-header{margin-bottom:2rem;padding-top:1rem}
+.inv-page-header .section-title{margin-bottom:.75rem}
+.inv-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
+.inv-count{font-family:"Barlow Condensed",sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.inv-count span{color:var(--gold)}
+.filter-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.filter-btn{font-family:"Barlow Condensed",sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.42rem 1rem;background:transparent;border:1px solid var(--steel);color:var(--muted);cursor:pointer;transition:all .2s}
+.filter-btn.active,.filter-btn:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.inv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.product-card{background:var(--dark2);overflow:hidden;transition:transform .25s;cursor:pointer}
+.product-card:hover{transform:translateY(-4px)}
+.product-img{width:100%;height:200px;background:var(--steel);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.product-img svg{width:60px;height:60px;fill:rgba(200,146,42,.2)}
+.product-tag{position:absolute;top:1rem;left:1rem;background:var(--gold);font-family:"Barlow Condensed",sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--black);padding:.2rem .65rem;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%)}
+.product-info{padding:1.4rem;border-top:1px solid var(--steel)}
+.product-info h4{font-family:"Barlow Condensed",sans-serif;font-size:1.05rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.4rem;line-height:1.2}
+.product-meta{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+.product-meta::before{content:"";width:8px;height:8px;background:var(--gold);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);flex-shrink:0}
+.product-cta{margin-top:1rem}
+.inquire-btn{font-family:"Barlow Condensed",sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.35rem;background:none;border:none;border-bottom:1px solid transparent;cursor:pointer;transition:border-color .2s;padding:0}
+.inquire-btn:hover{border-color:var(--gold)}
+.inquire-arrow{transition:transform .2s}
+.product-card:hover .inquire-arrow{transform:translateX(3px)}
+.page-hero{height:320px;display:flex;align-items:flex-end;padding:3rem 4rem;position:relative;overflow:hidden}
+.page-hero-bg{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,.97) 50%,rgba(10,10,10,.6) 100%),url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1400&q=70") center/cover no-repeat}
+.page-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--black) 0%,transparent 50%)}
+.page-hero-content{position:relative;z-index:2}
+.page-hero-content .section-label{margin-bottom:.75rem}
+.page-hero-content .section-title{font-size:clamp(2rem,5vw,3.5rem)}
+.detail-wrap{background:var(--dark);min-height:calc(100vh - 72px);padding:3rem 4rem 6rem}
+.detail-back{font-family:"Barlow Condensed",sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:.5rem;margin-bottom:2rem;transition:color .2s;padding:0}
+.detail-back:hover{color:var(--gold)}
+.detail-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:start}
+.detail-img-box{background:var(--dark2);height:420px;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid var(--steel)}
+.detail-img-box svg{width:120px;height:120px;fill:rgba(200,146,42,.18)}
+.detail-tag{position:absolute;top:1.2rem;left:1.2rem;background:var(--gold);font-family:"Barlow Condensed",sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--black);padding:.25rem .8rem;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%)}
+.detail-brand{font-family:"Barlow Condensed",sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.detail-brand::before{content:"";width:20px;height:2px;background:var(--gold)}
+.detail-title{font-family:"Barlow Condensed",sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;text-transform:uppercase;line-height:1.05;margin-bottom:1.5rem}
+.detail-specs{display:grid;grid-template-columns:1fr 1fr;gap:.75rem 1.5rem;margin-bottom:2rem}
+.spec-label{font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+.spec-value{font-size:.95rem;font-weight:600;color:var(--white)}
+.detail-desc{font-size:.95rem;color:rgba(245,244,240,.6);line-height:1.75;margin-bottom:2rem;padding-top:1.5rem;border-top:1px solid var(--steel)}
+.detail-actions{display:flex;gap:1rem}
+.contact-wrap{background:var(--black);display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 72px)}
+.contact-left{padding:6rem 4rem;background:var(--gold);position:relative;overflow:hidden}
+.contact-left::before{content:"";position:absolute;bottom:-60px;right:-60px;width:300px;height:300px;background:rgba(10,10,10,.08);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%)}
+.contact-left .section-label{color:var(--black)}
+.contact-left .section-label::before{background:var(--black)}
+.contact-left .section-title{color:var(--black);margin-bottom:2rem}
+.contact-info-item{display:flex;gap:1rem;margin-bottom:1.8rem;align-items:flex-start}
+.contact-icon{width:40px;height:40px;background:rgba(10,10,10,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%)}
+.contact-icon svg{width:18px;height:18px;fill:none;stroke:var(--black);stroke-width:2}
+.contact-info-label{font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(10,10,10,.5);margin-bottom:.2rem}
+.contact-info-value{font-size:.95rem;font-weight:600;color:var(--black);line-height:1.4}
+.contact-right{padding:6rem 4rem;background:var(--dark)}
+.contact-right h3{font-family:"Barlow Condensed",sans-serif;font-size:1.5rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2rem}
+.form-group{margin-bottom:1.5rem}
+.form-label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.form-input{width:100%;background:var(--dark2);border:1px solid var(--steel);color:var(--white);padding:.85rem 1rem;font-family:"Barlow",sans-serif;font-size:.95rem;outline:none;transition:border-color .2s}
+.form-input:focus{border-color:var(--gold)}
+.form-input::placeholder{color:var(--muted)}
+textarea.form-input{resize:none;height:120px}
+.form-submit{width:100%;background:var(--gold);color:var(--black);border:none;padding:1rem;font-family:"Barlow Condensed",sans-serif;font-size:1rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background .2s}
+.form-submit:hover{background:var(--gold-light)}
+.reach-section{background:var(--dark2);padding:5rem 4rem;position:relative;overflow:hidden}
+.reach-section::before{content:"GLOBAL";position:absolute;font-family:"Barlow Condensed",sans-serif;font-size:18rem;font-weight:900;color:rgba(200,146,42,.03);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap}
+.reach-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:1}
+.reach-map svg{width:100%;height:auto}
+.reach-text .section-title{margin-bottom:1.5rem}
+.reach-text p{font-size:1rem;color:rgba(245,244,240,.6);line-height:1.75;margin-bottom:1.5rem}
+.reach-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+.reach-stat{padding:1.2rem;background:var(--dark);border-top:2px solid var(--gold)}
+.reach-stat-num{font-family:"Barlow Condensed",sans-serif;font-size:2rem;font-weight:900;color:var(--gold);line-height:1}
+.reach-stat-label{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+footer{background:var(--black);border-top:1px solid var(--steel);padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center}
+footer .logo{font-size:1.2rem}
+.footer-copy{font-size:.78rem;color:var(--muted);text-align:center}
+.footer-links{display:flex;gap:2rem;list-style:none}
+.footer-link-btn{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;font-family:"Barlow",sans-serif;transition:color .2s}
+.footer-link-btn:hover{color:var(--gold)}
+.notif{position:fixed;bottom:2rem;right:2rem;z-index:500;background:var(--dark2);border:1px solid var(--gold);border-left:4px solid var(--gold);padding:1rem 1.5rem;max-width:340px;transform:translateX(120%);transition:transform .35s ease;display:flex;align-items:center;gap:.75rem}
+.notif.show{transform:translateX(0)}
+.notif svg{width:20px;height:20px;fill:var(--gold);flex-shrink:0}
+.notif-text strong{display:block;font-family:"Barlow Condensed",sans-serif;font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem}
+.notif-text span{font-size:.85rem;color:rgba(245,244,240,.7)}
+@media(max-width:900px){nav{padding:1rem 1.5rem}.nav-links li:nth-child(1),.nav-links li:nth-child(2),.nav-links li:nth-child(3){display:none}.hero{padding:0 1.5rem 4rem}.hero-stats{display:none}.about-wrap{grid-template-columns:1fr;padding:4rem 1.5rem}.services-wrap{padding:4rem 1.5rem}.services-grid{grid-template-columns:1fr 1fr}.inv-page-wrap{padding:2rem 1.5rem 4rem}.inv-grid{grid-template-columns:1fr 1fr}.detail-wrap{padding:2rem 1.5rem 4rem}.detail-grid{grid-template-columns:1fr}.reach-section{padding:4rem 1.5rem}.reach-inner{grid-template-columns:1fr}.contact-wrap{grid-template-columns:1fr}.contact-left,.contact-right{padding:4rem 1.5rem}footer{flex-direction:column;gap:1.5rem;text-align:center;padding:2rem 1.5rem}.page-hero{padding:2rem 1.5rem;height:260px}}
+</style>
+</head>
+<body>
+<div class="trans-bar" id="transBar"></div>
+<nav id="mainNav">
+  <button class="logo" onclick="showPage('home')"><img src="logo-m4e.png" alt="Machinery 4 Export" /></button>
+  <ul class="nav-links">
+    <li><button class="nav-link-btn" onclick="showPage('home')" data-i18n="nav_about">About</button></li>
+    <li><button class="nav-link-btn" onclick="showPage('services')" data-i18n="nav_services">Services</button></li>
+    <li><button class="nav-link-btn" onclick="showPage('inventory')" data-i18n="nav_inventory">Inventory</button></li>
+    <li>
+      <div class="lang-wrapper">
+        <button class="lang-btn" id="langToggle">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          <span id="currentLang">EN</span>
+          <svg viewBox="0 0 24 24" style="width:10px;height:10px;stroke-width:2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option selected" data-lang="en">&#127482;&#127480; English</button>
+          <button class="lang-option" data-lang="es">&#127466;&#127480; Español</button>
+          <button class="lang-option" data-lang="pt">&#127463;&#127479; Português</button>
+          <button class="lang-option" data-lang="fr">&#127467;&#127479; Français</button>
+          <button class="lang-option" data-lang="zh">&#127464;&#127475; 中文</button>
+        </div>
+      </div>
+    </li>
+    <li><button class="nav-cta" onclick="showPage('contact')" data-i18n="nav_contact">Contact Us</button></li>
+  </ul>
+</nav>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-label" data-i18n="hero_label">Trusted Global Partner in Machinery</div>
+  <h1><span data-i18n="hero_h1a">Heavy Equipment</span><br><em data-i18n="hero_h1b">For Export</em></h1>
+  <p class="hero-sub" data-i18n="hero_sub">Your trusted source for top-quality construction, mining, and industrial machinery — exported globally with precision and expertise.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="showPage('inventory')" data-i18n="hero_btn1">Browse Inventory</button>
+    <button class="btn-ghost" onclick="showPage('contact')" data-i18n="hero_btn2">Get a Quote</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">19+</div><div class="stat-label" data-i18n="stat1_label">Active Listings</div></div>
+    <div class="stat-item"><div class="stat-num">20%</div><div class="stat-label" data-i18n="stat2_label">Faster Customs</div></div>
+    <div class="stat-item"><div class="stat-num">Americas</div><div class="stat-label" data-i18n="stat3_label">Export Coverage</div></div>
+  </div>
+  <div class="scroll-indicator"><div class="scroll-line"></div><span class="scroll-text" data-i18n="scroll_text">Scroll</span></div>
+</section>
+<div class="ticker"><div class="ticker-inner">
+  <span>CAT Excavators</span><span class="ticker-dot">&#9670;</span><span>John Deere Backhoes</span><span class="ticker-dot">&#9670;</span><span>Bobcat Skid Steers</span><span class="ticker-dot">&#9670;</span><span>Atlas Copco Compressors</span><span class="ticker-dot">&#9670;</span><span>Electric Forklifts</span><span class="ticker-dot">&#9670;</span><span>New Holland Tractors</span><span class="ticker-dot">&#9670;</span><span>Toyota Vehicles</span><span class="ticker-dot">&#9670;</span><span>Prefab Structures</span><span class="ticker-dot">&#9670;</span>
+  <span>CAT Excavators</span><span class="ticker-dot">&#9670;</span><span>John Deere Backhoes</span><span class="ticker-dot">&#9670;</span><span>Bobcat Skid Steers</span><span class="ticker-dot">&#9670;</span><span>Atlas Copco Compressors</span><span class="ticker-dot">&#9670;</span><span>Electric Forklifts</span><span class="ticker-dot">&#9670;</span><span>New Holland Tractors</span><span class="ticker-dot">&#9670;</span><span>Toyota Vehicles</span><span class="ticker-dot">&#9670;</span><span>Prefab Structures</span><span class="ticker-dot">&#9670;</span>
+</div></div>
+<div class="about-wrap">
+  <div class="about-img">
+    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80" alt="Heavy machinery">
+    <div class="about-img-frame"></div>
+    <div class="about-badge"><div class="about-badge-num">FL</div><div class="about-badge-label">USA Based</div></div>
+  </div>
+  <div class="about-text">
+    <div class="section-label" data-i18n="about_label">Who We Are</div>
+    <h2 class="section-title" data-i18n="about_title">Your Trusted<br>Global Partner</h2>
+    <p data-i18n="about_p1">Welcome to Machinery 4 Export, your trusted global partner in machinery solutions.</p>
+    <p data-i18n="about_p2">Based in Boca Raton, Florida, we specialize in connecting buyers across the Americas with premium heavy equipment.</p>
+    <div class="about-features">
+      <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><strong data-i18n="feat1_title">Verified Equipment</strong><span data-i18n="feat1_desc">Every machine inspected and documented</span></div></div>
+      <div class="feature-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20"/></svg><div><strong data-i18n="feat2_title">Americas Coverage</strong><span data-i18n="feat2_desc">Shipping to all South American markets</span></div></div>
+      <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg><div><strong data-i18n="feat3_title">Full Documentation</strong><span data-i18n="feat3_desc">Complete customs &amp; compliance paperwork</span></div></div>
+      <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg><div><strong data-i18n="feat4_title">Insured &amp; Financed</strong><span data-i18n="feat4_desc">Export credit agency partnerships</span></div></div>
+    </div>
+  </div>
+</div>
+<div class="line-divider"></div>
+<div class="services-wrap">
+  <div class="services-header">
+    <div><div class="section-label" data-i18n="svc_label">What We Do</div><h2 class="section-title" data-i18n="svc_title">Export Services</h2></div>
+    <button class="btn-primary" onclick="showPage('services')" data-i18n="svc_btn">Consult Now</button>
+  </div>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-num">01</div><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div><h3 data-i18n="svc1_title">Comprehensive Export</h3><p data-i18n="svc1_desc">Handling all aspects of machinery export including documentation, logistics coordination, and regulatory compliance from door to port.</p><div class="service-detail" data-i18n="svc1_cta">Full-service logistics</div></div>
+    <div class="service-card"><div class="service-num">02</div><div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div><h3 data-i18n="svc2_title">Global Reach</h3><p data-i18n="svc2_desc">Exporting machinery to countries across the Americas. Specialized in shipping heavy equipment to South American mining and construction operations.</p><div class="service-detail" data-i18n="svc2_cta">Americas-wide coverage</div></div>
+    <div class="service-card"><div class="service-num">03</div><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div><h3 data-i18n="svc3_title">Customs Clearance</h3><p data-i18n="svc3_desc">Expert navigation of complex customs regulations across different countries. Our expertise reduces clearance time by an average of 20%.</p><div class="service-detail" data-i18n="svc3_cta">Faster clearance</div></div>
+    <div class="service-card"><div class="service-num">04</div><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><h3 data-i18n="svc4_title">Insurance &amp; Financing</h3><p data-i18n="svc4_desc">Export insurance and financing options through partnerships with leading export credit agencies to ensure secure and smooth transactions.</p><div class="service-detail" data-i18n="svc4_cta">Secure transactions</div></div>
+  </div>
+</div>
+<div class="reach-section">
+  <div class="reach-inner">
+    <div class="reach-map">
+      <svg viewBox="0 0 500 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M140 30L180 25L220 35L240 50L260 45L280 60L270 80L290 100L280 130L300 150L310 180L300 210L320 240L310 270L280 290L260 300L240 285L220 290L200 280L190 260L170 250L150 240L140 220L120 210L110 190L130 170L110 150L100 130L120 110L110 90L130 70L140 50Z" fill="rgba(200,146,42,0.08)" stroke="rgba(200,146,42,0.3)" stroke-width="1.5"/>
+        <path d="M100 30L140 20L180 25L220 35L240 50L230 70L210 80L190 75L170 80L150 70L130 80L110 70L100 55Z" fill="rgba(200,146,42,0.12)" stroke="rgba(200,146,42,0.4)" stroke-width="1"/>
+        <circle cx="200" cy="55" r="5" fill="#C8922A" opacity="0.9"/>
+        <circle cx="160" cy="90" r="4" fill="#C8922A" opacity="0.7"/>
+        <circle cx="250" cy="130" r="4" fill="#C8922A" opacity="0.7"/>
+        <circle cx="230" cy="200" r="4" fill="#C8922A" opacity="0.7"/>
+        <circle cx="260" cy="240" r="4" fill="#C8922A" opacity="0.7"/>
+        <text x="210" y="50" font-size="9" fill="rgba(200,146,42,0.9)" font-family="sans-serif" font-weight="700">USA HQ</text>
+        <text x="168" y="105" font-size="8" fill="rgba(200,146,42,0.7)" font-family="sans-serif">MEXICO</text>
+        <text x="255" y="145" font-size="8" fill="rgba(200,146,42,0.7)" font-family="sans-serif">COLOMBIA</text>
+        <text x="238" y="215" font-size="8" fill="rgba(200,146,42,0.7)" font-family="sans-serif">PERU</text>
+        <text x="265" y="255" font-size="8" fill="rgba(200,146,42,0.7)" font-family="sans-serif">BOLIVIA</text>
+        <line x1="200" y1="55" x2="160" y2="90" stroke="rgba(200,146,42,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="200" y1="55" x2="250" y2="130" stroke="rgba(200,146,42,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="250" y1="130" x2="230" y2="200" stroke="rgba(200,146,42,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="230" y1="200" x2="260" y2="240" stroke="rgba(200,146,42,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
+      </svg>
+    </div>
+    <div class="reach-text">
+      <div class="section-label" data-i18n="reach_label">Our Reach</div>
+      <h2 class="section-title" data-i18n="reach_title">Pan-American Export Network</h2>
+      <p data-i18n="reach_p1">From our base in Boca Raton, Florida, we connect clients across North and South America with the heavy equipment they need.</p>
+      <p data-i18n="reach_p2">Specialized in shipping to mining and construction operations throughout South America, we understand the logistics, regulations, and timelines of cross-border machinery export.</p>
+      <div class="reach-stats">
+        <div class="reach-stat"><div class="reach-stat-num">Americas</div><div class="reach-stat-label" data-i18n="reach_s1">Service Area</div></div>
+        <div class="reach-stat"><div class="reach-stat-num">20%</div><div class="reach-stat-label" data-i18n="reach_s2">Faster Customs</div></div>
+        <div class="reach-stat"><div class="reach-stat-num">19+</div><div class="reach-stat-label" data-i18n="reach_s3">Current Listings</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <button class="logo" onclick="showPage('home')"><img src="logo-m4e.png" alt="Machinery 4 Export" /></button>
+  <p class="footer-copy" data-i18n="footer_copy">&#169; 2026 Machinery 4 Export &middot; Boca Raton, FL USA &middot; All rights reserved</p>
+  <ul class="footer-links"><li><button class="footer-link-btn" onclick="showPage('home')" data-i18n="nav_about">About</button></li><li><button class="footer-link-btn" onclick="showPage('services')" data-i18n="nav_services">Services</button></li><li><button class="footer-link-btn" onclick="showPage('inventory')" data-i18n="nav_inventory">Inventory</button></li><li><button class="footer-link-btn" onclick="showPage('contact')" data-i18n="nav_contact">Contact</button></li></ul>
+</footer>
+</div>
+
+<!-- SERVICES PAGE -->
+<div class="page" id="page-services">
+<div class="page-hero"><div class="page-hero-bg"></div><div class="page-hero-content"><div class="section-label" data-i18n="svc_label">What We Do</div><h1 class="section-title" data-i18n="svc_title">Export Services</h1></div></div>
+<div class="services-wrap" style="padding-top:3rem">
+  <div class="services-grid" style="margin-bottom:3rem">
+    <div class="service-card"><div class="service-num">01</div><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div><h3 data-i18n="svc1_title">Comprehensive Export</h3><p data-i18n="svc1_desc">Handling all aspects of machinery export including documentation, logistics coordination, and regulatory compliance from door to port.</p><div class="service-detail" data-i18n="svc1_cta">Full-service logistics</div></div>
+    <div class="service-card"><div class="service-num">02</div><div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div><h3 data-i18n="svc2_title">Global Reach</h3><p data-i18n="svc2_desc">Exporting machinery to countries across the Americas. Specialized in shipping heavy equipment to South American mining and construction operations.</p><div class="service-detail" data-i18n="svc2_cta">Americas-wide coverage</div></div>
+    <div class="service-card"><div class="service-num">03</div><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div><h3 data-i18n="svc3_title">Customs Clearance</h3><p data-i18n="svc3_desc">Expert navigation of complex customs regulations across different countries. Our expertise reduces clearance time by an average of 20%.</p><div class="service-detail" data-i18n="svc3_cta">Faster clearance</div></div>
+    <div class="service-card"><div class="service-num">04</div><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><h3 data-i18n="svc4_title">Insurance &amp; Financing</h3><p data-i18n="svc4_desc">Export insurance and financing options through partnerships with leading export credit agencies to ensure secure and smooth transactions.</p><div class="service-detail" data-i18n="svc4_cta">Secure transactions</div></div>
+  </div>
+  <div style="text-align:center;padding:3rem;background:var(--dark2);border-top:2px solid var(--gold)">
+    <div class="section-label" style="justify-content:center" data-i18n="contact_label">Get In Touch</div>
+    <h2 class="section-title" style="margin-bottom:1.5rem" data-i18n="contact_title">Ready to Export?</h2>
+    <button class="btn-primary" onclick="showPage('contact')" data-i18n="svc_btn">Consult Now</button>
+  </div>
+</div>
+<footer>
+  <button class="logo" onclick="showPage('home')"><img src="logo-m4e.png" alt="Machinery 4 Export" /></button>
+  <p class="footer-copy" data-i18n="footer_copy">&#169; 2026 Machinery 4 Export &middot; Boca Raton, FL USA &middot; All rights reserved</p>
+  <ul class="footer-links"><li><button class="footer-link-btn" onclick="showPage('home')" data-i18n="nav_about">About</button></li><li><button class="footer-link-btn" onclick="showPage('services')" data-i18n="nav_services">Services</button></li><li><button class="footer-link-btn" onclick="showPage('inventory')" data-i18n="nav_inventory">Inventory</button></li><li><button class="footer-link-btn" onclick="showPage('contact')" data-i18n="nav_contact">Contact</button></li></ul>
+</footer>
+</div>
+
+<!-- INVENTORY PAGE -->
+<div class="page" id="page-inventory">
+<div class="inv-page-wrap">
+  <div class="inv-page-header">
+    <div class="section-label" data-i18n="inv_label">Available Now</div>
+    <h1 class="section-title" data-i18n="inv_title">Equipment Inventory</h1>
+    <p style="margin-top:.75rem;color:rgba(245,244,240,.55);font-size:1rem;max-width:600px" data-i18n="inv_sub">Browse our current selection of heavy equipment available for export. All units are inspection-ready with full documentation.</p>
+  </div>
+  <div class="inv-toolbar">
+    <div class="inv-count"><span id="visibleCount">19</span> <span data-i18n="inv_count_label">units available</span></div>
+    <div class="filter-row" id="filterRow">
+      <button class="filter-btn active" data-cat="all" data-i18n="filter_all">All</button>
+      <button class="filter-btn" data-cat="excavator" data-i18n="filter_exc">Excavators</button>
+      <button class="filter-btn" data-cat="loader" data-i18n="filter_ldr">Loaders</button>
+      <button class="filter-btn" data-cat="forklift" data-i18n="filter_fkl">Forklifts</button>
+      <button class="filter-btn" data-cat="vehicle" data-i18n="filter_veh">Vehicles</button>
+      <button class="filter-btn" data-cat="structure" data-i18n="filter_str">Structures</button>
+    </div>
+  </div>
+  <div class="inv-grid" id="invGrid"></div>
+</div>
+<footer>
+  <button class="logo" onclick="showPage('home')"><img src="logo-m4e.png" alt="Machinery 4 Export" /></button>
+  <p class="footer-copy" data-i18n="footer_copy">&#169; 2026 Machinery 4 Export &middot; Boca Raton, FL USA &middot; All rights reserved</p>
+  <ul class="footer-links"><li><button class="footer-link-btn" onclick="showPage('home')" data-i18n="nav_about">About</button></li><li><button class="footer-link-btn" onclick="showPage('services')" data-i18n="nav_services">Services</button></li><li><button class="footer-link-btn" onclick="showPage('inventory')" data-i18n="nav_inventory">Inventory</button></li><li><button class="footer-link-btn" onclick="showPage('contact')" data-i18n="nav_contact">Contact</button></li></ul>
+</footer>
+</div>
+
+<!-- DETAIL PAGE -->
+<div class="page" id="page-detail">
+<div class="detail-wrap">
+  <button class="detail-back" onclick="showPage('inventory')">&#8592; <span data-i18n="back_inv">Back to Inventory</span></button>
+  <div class="detail-grid">
+    <div class="detail-img-box" id="detailImg"><svg viewBox="0 0 64 64"><path d="M8 40h48v4H8zm4-16h8v16h-8zm12 8h28v8H24z"/></svg><span class="detail-tag" id="detailTag"></span></div>
+    <div id="detailThumbs" style="display:none;gap:.5rem;margin-top:.75rem;flex-wrap:wrap;overflow-x:auto;padding-bottom:.25rem"></div>
+    <div>
+      <div class="detail-brand" id="detailBrand"></div>
+      <h1 class="detail-title" id="detailTitle"></h1>
+      <div class="detail-specs" id="detailSpecs"></div>
+      <div class="detail-desc" id="detailDesc"></div>
+      <div class="detail-actions">
+        <button class="btn-primary" id="quoteBtn" data-i18n="detail_quote">Request Quote</button>
+        <button class="btn-ghost" onclick="showPage('contact')" data-i18n="detail_contact">Contact Us</button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <button class="logo" onclick="showPage('home')"><img src="logo-m4e.png" alt="Machinery 4 Export" /></button>
+  <p class="footer-copy" data-i18n="footer_copy">&#169; 2026 Machinery 4 Export &middot; Boca Raton, FL USA &middot; All rights reserved</p>
+  <ul class="footer-links"><li><button class="footer-link-btn" onclick="showPage('home')" data-i18n="nav_about">About</button></li><li><button class="footer-link-btn" onclick="showPage('inventory')" data-i18n="nav_inventory">Inventory</button></li><li><button class="footer-link-btn" onclick="showPage('contact')" data-i18n="nav_contact">Contact</button></li></ul>
+</footer>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="page-contact">
+<div class="contact-wrap">
+  <div class="contact-left">
+    <div class="section-label" data-i18n="contact_label">Get In Touch</div>
+    <h2 class="section-title" data-i18n="contact_title">Ready to Export?</h2>
+    <div class="contact-info-item"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3.07-8.7A2 2 0 012 .82h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="contact-info-label" data-i18n="c_phone_label">Phone</div><div class="contact-info-value">+1 (305) 339-3456</div></div></div>
+    <div class="contact-info-item"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-info-label" data-i18n="c_email_label">Email</div><div class="contact-info-value">machineryforexport@gmail.com</div></div></div>
+    <div class="contact-info-item"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="contact-info-label" data-i18n="c_addr_label">Location</div><div class="contact-info-value">6049 Boca Colony Dr, Apt 812<br>Boca Raton, FL 33433 USA</div></div></div>
+  </div>
+  <div class="contact-right">
+    <h3 data-i18n="form_title">Request a Quote</h3>
+    <div class="form-group"><label class="form-label" data-i18n="form_name">Full Name</label><input type="text" class="form-input" data-i18n-ph="form_name_ph" placeholder="Your name"></div>
+    <div class="form-group"><label class="form-label" data-i18n="form_email">Email Address</label><input type="email" class="form-input" data-i18n-ph="form_email_ph" placeholder="your@email.com"></div>
+    <div class="form-group"><label class="form-label" data-i18n="form_company">Company / Country</label><input type="text" class="form-input" data-i18n-ph="form_company_ph" placeholder="Company name &amp; country"></div>
+    <div class="form-group"><label class="form-label" data-i18n="form_equip">Equipment Needed</label><textarea class="form-input" data-i18n-ph="form_equip_ph" placeholder="Describe the machinery you are looking for..."></textarea></div>
+    <button class="form-submit" id="formSubmit" data-i18n="form_submit">Send Inquiry</button>
+  </div>
+</div>
+<footer>
+  <button class="logo" onclick="showPage('home')"><img src="logo-m4e.png" alt="Machinery 4 Export" /></button>
+  <p class="footer-copy" data-i18n="footer_copy">&#169; 2026 Machinery 4 Export &middot; Boca Raton, FL USA &middot; All rights reserved</p>
+  <ul class="footer-links"><li><button class="footer-link-btn" onclick="showPage('home')" data-i18n="nav_about">About</button></li><li><button class="footer-link-btn" onclick="showPage('services')" data-i18n="nav_services">Services</button></li><li><button class="footer-link-btn" onclick="showPage('inventory')" data-i18n="nav_inventory">Inventory</button></li></ul>
+</footer>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notif" id="notif">
+  <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  <div class="notif-text"><strong data-i18n="notif_title">Quote Requested!</strong><span data-i18n="notif_msg">We will contact you within 24 hours.</span></div>
+</div>
+
+<script>
+var PRODUCTS=[
+  {id:1,title:"2019 CAT 336GC Hydraulic Excavator",brand:"CAT",year:"2019",cat:"excavator",tag:"Featured",imgs:["images/cat-336gc_1.jpg","images/cat-336gc_2.jpg","images/cat-336gc_3.jpg","images/cat-336gc_4.jpg"],specs:{Make:"Caterpillar",Model:"336GC",Year:"2019",Type:"Hydraulic Excavator",Condition:"Used",Location:"USA"},desc:"Powered by CAT Diesel Engine. Equipped with cab, air, heat, backup camera, 31in. Pads, Digging Bucket. Full documentation and export-ready."},
+  {id:2,title:"2019 John Deere 710L Tractor Loader Backhoe",brand:"John Deere",year:"2019",cat:"loader",tag:"2019",imgs:["images/john-deere-710l_1.jpg","images/john-deere-710l_2.jpg","images/john-deere-710l_3.jpg","images/john-deere-710l_4.jpg","images/john-deere-710l_5.jpg","images/john-deere-710l_6.jpg"],specs:{Make:"John Deere",Model:"710L",Year:"2019",Type:"Tractor Loader Backhoe",SN:"356373",Condition:"Used",Location:"USA"},desc:"Powered by John Deere diesel engine. CabEROPS, air, heat, powershift transmission, pilot control, standard stick. SN: 356373"},
+  {id:3,title:"2024 Bobcat S510-C4 Skid Steer Loader",brand:"Bobcat",year:"2024",cat:"loader",tag:"Unused",imgs:["images/bobcat-s510_1.jpg","images/bobcat-s510_2.jpg","images/bobcat-s510_3.jpg","images/bobcat-s510_4.jpg","images/bobcat-s510_5.jpg","images/bobcat-s510_6.jpg","images/bobcat-s510_7.jpg"],specs:{Make:"Bobcat",Model:"S510-C4",Year:"2024",Type:"Skid Steer Loader",Condition:"Unused",Location:"Jebel Ali, UAE"},desc:"Brand new unused Bobcat skid steer loader with C4 engine. Compact and powerful, ideal for tight job sites."},
+  {id:4,title:"New Holland Workmaster 70 Tractor Loader 4x4",brand:"New Holland",year:"2024",cat:"loader",tag:"NEW",imgs:["images/new-holland-70_1.jpg","images/new-holland-70_2.jpg","images/new-holland-70_3.jpg","images/new-holland-70_4.jpg","images/new-holland-70_5.jpg"],specs:{Make:"New Holland",Model:"Workmaster 70",Year:"2024",Type:"Tractor Loader",Drive:"4x4",Condition:"New",SN:"5616941"},desc:"Diesel 70hp, ROPS, 8x8 mechanical shuttle transmission, 611TL front loader w/72in. GP bucket, 3pt hitch, PTO, R1 AG rubber. HR-241. Serial: 5616941"},
+  {id:5,title:"2024 JQ Power JQ2T-MAX 4409 lb Electric Forklift",brand:"JQ Power",year:"2024",cat:"forklift",tag:"Unused",imgs:["images/forklift-4409_1.jpg","images/forklift-4409_2.jpg","images/forklift-4409_3.jpg","images/forklift-4409_4.jpg"],specs:{Make:"JQ Power",Model:"JQ2T-MAX",Year:"2024",Type:"Electric Forklift",Capacity:"4409 lb",SN:"243810053",Condition:"Unused"},desc:"Unused 2024 electric forklift with 4,409 lb capacity. Zero emissions, low maintenance. S/N: 243810053"},
+  {id:6,title:"2024 JQ Power JQ2T-MAX 4400 lb Electric Forklift (Unit 2)",brand:"JQ Power",year:"2024",cat:"forklift",tag:"Unused",imgs:["images/forklift-4400_1.jpg","images/forklift-4400_2.jpg","images/forklift-4400_3.jpg","images/forklift-4400_4.jpg"],specs:{Make:"JQ Power",Model:"JQ2T-MAX",Year:"2024",Type:"Electric Forklift",Capacity:"4400 lb",SN:"243470095",Condition:"Unused"},desc:"Unused 2024 electric forklift 4,400 lb capacity. Efficient battery-powered operation. S/N: 243470095"},
+  {id:7,title:"2024 JQ Power JQ2T-MAX 4400 lb Electric Forklift (Unit 3)",brand:"JQ Power",year:"2024",cat:"forklift",tag:"Unused",imgs:["images/forklift-4400_1.jpg","images/forklift-4400_2.jpg","images/forklift-4400_3.jpg","images/forklift-4400_4.jpg"],specs:{Make:"JQ Power",Model:"JQ2T-MAX",Year:"2024",Type:"Electric Forklift",Capacity:"4400 lb",SN:"24479002",Condition:"Unused"},desc:"Unused 2024 electric forklift 4,400 lb capacity. S/N: 24479002. Contact us for volume discounts on multiple units."},
+  {id:8,title:"2024 JQ Power JQ2T-MAX 4400 lb Electric Forklift (Unit 4)",brand:"JQ Power",year:"2024",cat:"forklift",tag:"Unused",imgs:["images/forklift-4400_1.jpg","images/forklift-4400_2.jpg","images/forklift-4400_3.jpg","images/forklift-4400_4.jpg"],specs:{Make:"JQ Power",Model:"JQ2T-MAX",Year:"2024",Type:"Electric Forklift",Capacity:"4400 lb",SN:"243470096",Condition:"Unused"},desc:"Unused 2024 electric forklift 4,400 lb capacity. S/N: 243470096. Full documentation included."},
+  {id:9,title:"2006 Atlas Copco XA136DD Mobile Air Compressor",brand:"Atlas Copco",year:"2006",cat:"loader",tag:"2006",imgs:["images/atlas-copco_1.jpg","images/atlas-copco_2.jpg","images/atlas-copco_3.jpg"],specs:{Make:"Atlas Copco",Model:"XA136DD",Year:"2006",Type:"Mobile Air Compressor",SN:"YA306245X60570117",Condition:"Used"},desc:"Heavy-duty mobile air compressor. Road-towable with reliable diesel engine. S/N: YA306245X60570117"},
+  {id:10,title:"2006 Atlas Copco XA136DD Mobile Air Compressor (Unit 2)",brand:"Atlas Copco",year:"2006",cat:"loader",tag:"2006",imgs:["images/atlas-copco_1.jpg","images/atlas-copco_2.jpg","images/atlas-copco_3.jpg"],specs:{Make:"Atlas Copco",Model:"XA136DD",Year:"2006",Type:"Mobile Air Compressor",SN:"YA306245860552585",Condition:"Used"},desc:"Second unit of the XA136DD. S/N: YA306245860552585. Ideal for high-demand pneumatic applications on remote sites."},
+  {id:11,title:"2024 Bobcat S510-C4 Skid Steer Loader (Unit 2)",brand:"Bobcat",year:"2024",cat:"loader",tag:"Unused",imgs:["images/bobcat-s510_1.jpg","images/bobcat-s510_2.jpg","images/bobcat-s510_3.jpg","images/bobcat-s510_4.jpg","images/bobcat-s510_5.jpg"],specs:{Make:"Bobcat",Model:"S510-C4",Year:"2024",Type:"Skid Steer Loader",Condition:"Unused",Location:"Jebel Ali, UAE"},desc:"Second unused 2024 Bobcat S510-C4 skid steer loader. Compact powerhouse ready for export."},
+  {id:12,title:"2019 John Deere 710L Tractor Loader Backhoe (Unit 2)",brand:"John Deere",year:"2019",cat:"loader",tag:"2019",imgs:["images/john-deere-710l_1.jpg","images/john-deere-710l_2.jpg","images/john-deere-710l_3.jpg","images/john-deere-710l_4.jpg"],specs:{Make:"John Deere",Model:"710L",Year:"2019",Type:"Tractor Loader Backhoe",SN:"355127",Condition:"Used"},desc:"Second unit of the John Deere 710L. SN: 355127. Same excellent condition with full service history."},
+  {id:13,title:"Toyota Hilux DC PUP 4.0L 4x4",brand:"Toyota",year:"2025",cat:"vehicle",tag:"2025",imgs:["images/toyota-hilux_1.jpg","images/toyota-hilux_2.jpg","images/toyota-hilux_3.jpg","images/toyota-hilux_4.jpg","images/toyota-hilux_5.jpg","images/toyota-hilux_6.jpg"],specs:{Make:"Toyota",Model:"Hilux DC PUP",Year:"2025",Engine:"4.0L",Drive:"4x4",Origin:"Thailand",Color:"White Pearl"},desc:"Fabrication 2025. Origin: Thailand. Color: White Pearl. Chassis: MR0BU8CD1S01*****. Engine: 1GRC973077"},
+  {id:14,title:"Toyota LC78 Hardtop 4.0L AT",brand:"Toyota",year:"2025",cat:"vehicle",tag:"2025",imgs:["images/toyota-lc78_1.jpg","images/toyota-lc78_2.jpg","images/toyota-lc78_3.jpg","images/toyota-lc78_4.jpg","images/toyota-lc78_5.jpg","images/toyota-lc78_6.jpg","images/toyota-lc78_7.jpg","images/toyota-lc78_8.jpg","images/toyota-lc78_9.jpg","images/toyota-lc78_10.jpg","images/toyota-lc78_11.jpg","images/toyota-lc78_12.jpg","images/toyota-lc78_13.jpg","images/toyota-lc78_14.jpg","images/toyota-lc78_15.jpg","images/toyota-lc78_16.jpg","images/toyota-lc78_17.jpg"],specs:{Make:"Toyota",Model:"LC78 Hardtop",Year:"2025",Engine:"4.0L",Transmission:"Automatic",Origin:"Japan",Color:"White"},desc:"Fabrication 2025. Origin: Japan. Color: White. Chassis: JTFRU71J4SF0*****. Engine: 1GRC973303"},
+  {id:15,title:"Lot 1112 - Suihe C2020-300gPE Prefab Canopy (Unused)",brand:"Suihe",year:"2024",cat:"structure",tag:"Unused",imgs:["images/suihe-1112_1.jpg","images/suihe-1112_2.jpg","images/suihe-1112_3.jpg"],specs:{Make:"Suihe",Model:"C2020-300gPE",Type:"Prefabricated Canopy",Lot:"1112",Condition:"Unused"},desc:"Unused prefabricated structure canopy. Easy assembly, durable materials. Ideal for industrial and agricultural shelter applications."},
+  {id:16,title:"Lot 1113 - Suihe C2020-300gPE Prefab Canopy (Unused)",brand:"Suihe",year:"2024",cat:"structure",tag:"Unused",imgs:["images/suihe-1113_1.jpg","images/suihe-1113_2.jpg","images/suihe-1113_3.jpg"],specs:{Make:"Suihe",Model:"C2020-300gPE",Type:"Prefabricated Canopy",Lot:"1113",Condition:"Unused"},desc:"Unused prefabricated structure canopy. Easy assembly, durable materials."},
+  {id:17,title:"Lot 1114 - Suihe C2020-300gPE Prefab Canopy (Unused)",brand:"Suihe",year:"2024",cat:"structure",tag:"Unused",imgs:["images/suihe-1114_1.jpg","images/suihe-1114_2.jpg","images/suihe-1114_3.jpg","images/suihe-1114_4.jpg"],specs:{Make:"Suihe",Model:"C2020-300gPE",Type:"Prefabricated Canopy",Lot:"1114",Condition:"Unused"},desc:"Unused prefabricated canopy structure ready for export. Quick deploy design suitable for site offices or equipment shelter."},
+  {id:18,title:"Lot 1115 - Suihe 203012R-300gPE Prefab Structure (Unused)",brand:"Suihe",year:"2024",cat:"structure",tag:"Unused",imgs:["images/suihe-1115_1.jpg","images/suihe-1115_2.jpg","images/suihe-1115_3.jpg","images/suihe-1115_4.jpg"],specs:{Make:"Suihe",Model:"203012R-300gPE",Type:"Prefabricated Structure",Lot:"1115",Condition:"Unused"},desc:"Unused prefabricated structure in larger 203012R format. Robust frame ideal for workshop or storage use on mining and construction sites."},
+  {id:19,title:"Lot 1117 - Suihe 203012R-300gPE Prefab Structure (Unused)",brand:"Suihe",year:"2024",cat:"structure",tag:"Unused",imgs:["images/suihe-1117_1.jpg","images/suihe-1117_2.jpg","images/suihe-1117_3.jpg"],specs:{Make:"Suihe",Model:"203012R-300gPE",Type:"Prefabricated Structure",Lot:"1117",Condition:"Unused"},desc:"Unused large-format prefabricated structure. Modular design allows flexible configuration. Export documentation ready."}
+];
+
+var CAT_ICONS={
+  excavator:'<svg viewBox="0 0 64 64"><path d="M8 40h48v4H8zm4-16h8v16h-8zm12 8h28v8H24zm-4-12l8-8 4 4-8 8z"/></svg>',
+  loader:'<svg viewBox="0 0 64 64"><path d="M8 40h48v4H8zm4-8h40v8H12zm8-12h8v12H20zm20 0h8v12H40z"/></svg>',
+  forklift:'<svg viewBox="0 0 64 64"><path d="M12 16h4v32h-4zm8 8h28v8H20zm0 12h16v8H20zm24-12h4v24h-4zm-36 16h8v4h-8z"/></svg>',
+  vehicle:'<svg viewBox="0 0 64 64"><path d="M8 36h48l4 8H4zm8-12h10l6 12H10zm16 0h14l4 12H32zm-22 20a4 4 0 100 8 4 4 0 000-8zm32 0a4 4 0 100 8 4 4 0 000-8z"/></svg>',
+  structure:'<svg viewBox="0 0 64 64"><path d="M8 48h48v4H8zm4-28h48v4H4zm4 4h4v24H12zm36 0h4v24h-4zm-20 0h8v24H28z"/></svg>'
+};
+
+var T={
+  en:{nav_about:"About",nav_services:"Services",nav_inventory:"Inventory",nav_contact:"Contact Us",hero_label:"Trusted Global Partner in Machinery",hero_h1a:"Heavy Equipment",hero_h1b:"For Export",hero_sub:"Your trusted source for top-quality construction, mining, and industrial machinery — exported globally with precision and expertise.",hero_btn1:"Browse Inventory",hero_btn2:"Get a Quote",stat1_label:"Active Listings",stat2_label:"Faster Customs",stat3_label:"Export Coverage",scroll_text:"Scroll",about_label:"Who We Are",about_title:"Your Trusted<br>Global Partner",about_p1:"Welcome to Machinery 4 Export, your trusted global partner in machinery solutions. We are dedicated to providing top-quality equipment and exceptional service to meet your export needs.",about_p2:"Based in Boca Raton, Florida, we specialize in connecting buyers across the Americas with premium heavy equipment — from excavators and backhoes to forklifts and specialized construction machinery.",feat1_title:"Verified Equipment",feat1_desc:"Every machine inspected and documented",feat2_title:"Americas Coverage",feat2_desc:"Shipping to all South American markets",feat3_title:"Full Documentation",feat3_desc:"Complete customs & compliance paperwork",feat4_title:"Insured & Financed",feat4_desc:"Export credit agency partnerships",svc_label:"What We Do",svc_title:"Export Services",svc_btn:"Consult Now",svc1_title:"Comprehensive Export",svc1_desc:"Handling all aspects of machinery export including documentation, logistics coordination, and regulatory compliance from door to port.",svc1_cta:"Full-service logistics",svc2_title:"Global Reach",svc2_desc:"Exporting machinery to countries across the Americas. Specialized in shipping heavy equipment to South American mining and construction operations.",svc2_cta:"Americas-wide coverage",svc3_title:"Customs Clearance",svc3_desc:"Expert navigation of complex customs regulations across different countries. Our expertise reduces clearance time by an average of 20%.",svc3_cta:"Faster clearance",svc4_title:"Insurance & Financing",svc4_desc:"Export insurance and financing options through partnerships with leading export credit agencies to ensure secure and smooth transactions.",svc4_cta:"Secure transactions",inv_label:"Available Now",inv_title:"Equipment Inventory",inv_sub:"Browse our current selection of heavy equipment available for export. All units are inspection-ready with full documentation.",inv_count_label:"units available",filter_all:"All",filter_exc:"Excavators",filter_ldr:"Loaders",filter_fkl:"Forklifts",filter_veh:"Vehicles",filter_str:"Structures",inquire:"Inquire",reach_label:"Our Reach",reach_title:"Pan-American Export Network",reach_p1:"From our base in Boca Raton, Florida, we connect clients across North and South America with the heavy equipment they need.",reach_p2:"Specialized in shipping to mining and construction operations throughout South America, we understand the logistics, regulations, and timelines of cross-border machinery export.",reach_s1:"Service Area",reach_s2:"Faster Customs",reach_s3:"Current Listings",contact_label:"Get In Touch",contact_title:"Ready to Export?",c_phone_label:"Phone",c_email_label:"Email",c_addr_label:"Location",form_title:"Request a Quote",form_name:"Full Name",form_name_ph:"Your name",form_email:"Email Address",form_email_ph:"your@email.com",form_company:"Company / Country",form_company_ph:"Company name & country",form_equip:"Equipment Needed",form_equip_ph:"Describe the machinery or equipment you are looking for...",form_submit:"Send Inquiry",footer_copy:"© 2026 Machinery 4 Export · Boca Raton, FL USA · All rights reserved",notif_title:"Quote Requested!",notif_msg:"We will contact you within 24 hours.",back_inv:"Back to Inventory",detail_quote:"Request Quote",detail_contact:"Contact Us"},
+  es:{nav_about:"Nosotros",nav_services:"Servicios",nav_inventory:"Inventario",nav_contact:"Contáctanos",hero_label:"Su Socio Global de Confianza en Maquinaria",hero_h1a:"Maquinaria Pesada",hero_h1b:"Para Exportar",hero_sub:"Su fuente confiable de maquinaria de construcción, minería e industria de alta calidad — exportada globalmente con precisión y experiencia.",hero_btn1:"Ver Inventario",hero_btn2:"Solicitar Cotización",stat1_label:"Equipos Disponibles",stat2_label:"Aduana Más Rápida",stat3_label:"Cobertura de Exportación",scroll_text:"Desplazar",about_label:"Quiénes Somos",about_title:"Su Socio Global<br>de Confianza",about_p1:"Bienvenido a Machinery 4 Export, su socio global de confianza en soluciones de maquinaria. Estamos dedicados a brindar equipos de alta calidad y un servicio excepcional.",about_p2:"Con sede en Boca Raton, Florida, nos especializamos en conectar compradores en toda América con equipos pesados premium — desde excavadoras hasta montacargas.",feat1_title:"Equipos Verificados",feat1_desc:"Cada máquina inspeccionada y documentada",feat2_title:"Cobertura en Américas",feat2_desc:"Envíos a todos los mercados de América del Sur",feat3_title:"Documentación Completa",feat3_desc:"Papeleo completo de aduanas y cumplimiento",feat4_title:"Asegurado y Financiado",feat4_desc:"Alianzas con agencias de crédito de exportación",svc_label:"Lo Que Hacemos",svc_title:"Servicios de Exportación",svc_btn:"Consultar Ahora",svc1_title:"Exportación Integral",svc1_desc:"Gestionamos todos los aspectos de la exportación de maquinaria: documentación, logística y cumplimiento regulatorio de puerta a puerto.",svc1_cta:"Logística completa",svc2_title:"Alcance Global",svc2_desc:"Exportamos maquinaria a países de toda América. Especializados en envíos a operaciones mineras y de construcción en América del Sur.",svc2_cta:"Cobertura en toda América",svc3_title:"Despacho Aduanero",svc3_desc:"Navegamos con destreza las complejas regulaciones aduaneras de diferentes países. Nuestra experiencia reduce el tiempo de despacho en un 20%.",svc3_cta:"Despacho más rápido",svc4_title:"Seguro y Financiamiento",svc4_desc:"Seguro de exportación y opciones de financiamiento a través de alianzas con agencias líderes de crédito para transacciones seguras.",svc4_cta:"Transacciones seguras",inv_label:"Disponible Ahora",inv_title:"Inventario de Equipos",inv_sub:"Explore nuestra selección actual de equipos pesados disponibles para exportación. Todas las unidades están listas para inspección.",inv_count_label:"unidades disponibles",filter_all:"Todos",filter_exc:"Excavadoras",filter_ldr:"Cargadoras",filter_fkl:"Montacargas",filter_veh:"Vehículos",filter_str:"Estructuras",inquire:"Consultar",reach_label:"Nuestro Alcance",reach_title:"Red de Exportación Panamericana",reach_p1:"Desde nuestra base en Boca Raton, Florida, conectamos clientes de toda América con el equipo pesado que necesitan.",reach_p2:"Especializados en envíos a operaciones mineras y de construcción en América del Sur, entendemos la logística, las regulaciones y los plazos de la exportación transfronteriza.",reach_s1:"Área de Servicio",reach_s2:"Aduana Más Rápida",reach_s3:"Listados Actuales",contact_label:"Contáctenos",contact_title:"¿Listo para Exportar?",c_phone_label:"Teléfono",c_email_label:"Correo",c_addr_label:"Ubicación",form_title:"Solicitar una Cotización",form_name:"Nombre Completo",form_name_ph:"Su nombre",form_email:"Correo Electrónico",form_email_ph:"su@correo.com",form_company:"Empresa / País",form_company_ph:"Nombre de empresa y país",form_equip:"Equipo Necesario",form_equip_ph:"Describa la maquinaria o equipo que busca...",form_submit:"Enviar Consulta",footer_copy:"© 2026 Machinery 4 Export · Boca Raton, FL USA · Todos los derechos reservados",notif_title:"¡Cotización Enviada!",notif_msg:"Nos pondremos en contacto en 24 horas.",back_inv:"Volver al Inventario",detail_quote:"Solicitar Cotización",detail_contact:"Contáctenos"},
+  pt:{nav_about:"Sobre Nós",nav_services:"Serviços",nav_inventory:"Inventário",nav_contact:"Contate-nos",hero_label:"Seu Parceiro Global de Confiança em Máquinas",hero_h1a:"Equipamentos Pesados",hero_h1b:"Para Exportação",hero_sub:"Sua fonte confiável de maquinário de construção, mineração e industrial de alta qualidade — exportado globalmente com precisão e expertise.",hero_btn1:"Ver Inventário",hero_btn2:"Solicitar Cotação",stat1_label:"Equipamentos Disponíveis",stat2_label:"Alfândega Mais Rápida",stat3_label:"Cobertura de Exportação",scroll_text:"Rolar",about_label:"Quem Somos",about_title:"Seu Parceiro Global<br>de Confiança",about_p1:"Bem-vindo à Machinery 4 Export, seu parceiro global de confiança em soluções de maquinário.",about_p2:"Com sede em Boca Raton, Flórida, somos especializados em conectar compradores em toda a América com equipamentos pesados premium.",feat1_title:"Equipamentos Verificados",feat1_desc:"Cada máquina inspecionada e documentada",feat2_title:"Cobertura nas Américas",feat2_desc:"Envios para todos os mercados da América do Sul",feat3_title:"Documentação Completa",feat3_desc:"Papelada completa de alfândega e conformidade",feat4_title:"Segurado e Financiado",feat4_desc:"Parcerias com agências de crédito à exportação",svc_label:"O Que Fazemos",svc_title:"Serviços de Exportação",svc_btn:"Consultar Agora",svc1_title:"Exportação Completa",svc1_desc:"Gerenciamos todos os aspectos da exportação de maquinário de porta ao porto.",svc1_cta:"Logística completa",svc2_title:"Alcance Global",svc2_desc:"Exportamos maquinário para países de toda a América.",svc2_cta:"Cobertura pan-americana",svc3_title:"Desembaraço Aduaneiro",svc3_desc:"Navegamos habilmente nos complexos regulamentos aduaneiros. Reduzimos o tempo de liberação em 20%.",svc3_cta:"Desembaraço mais rápido",svc4_title:"Seguro e Financiamento",svc4_desc:"Seguro de exportação e financiamento via parcerias com agências líderes.",svc4_cta:"Transações seguras",inv_label:"Disponível Agora",inv_title:"Inventário de Equipamentos",inv_sub:"Navegue pela nossa seleção atual de equipamentos pesados disponíveis para exportação.",inv_count_label:"unidades disponíveis",filter_all:"Todos",filter_exc:"Escavadeiras",filter_ldr:"Carregadeiras",filter_fkl:"Empilhadeiras",filter_veh:"Veículos",filter_str:"Estruturas",inquire:"Consultar",reach_label:"Nosso Alcance",reach_title:"Rede Pan-Americana de Exportação",reach_p1:"Da nossa base em Boca Raton, conectamos clientes com os equipamentos pesados de que precisam.",reach_p2:"Especializados em envios para operações de mineração e construção na América do Sul.",reach_s1:"Área de Serviço",reach_s2:"Alfândega Mais Rápida",reach_s3:"Anúncios Atuais",contact_label:"Entre em Contato",contact_title:"Pronto para Exportar?",c_phone_label:"Telefone",c_email_label:"E-mail",c_addr_label:"Localização",form_title:"Solicitar uma Cotação",form_name:"Nome Completo",form_name_ph:"Seu nome",form_email:"Endereço de E-mail",form_email_ph:"seu@email.com",form_company:"Empresa / País",form_company_ph:"Nome da empresa e país",form_equip:"Equipamento Necessário",form_equip_ph:"Descreva o maquinário ou equipamento que procura...",form_submit:"Enviar Consulta",footer_copy:"© 2026 Machinery 4 Export · Boca Raton, FL EUA · Todos os direitos reservados",notif_title:"Cotação Enviada!",notif_msg:"Entraremos em contato em 24 horas.",back_inv:"Voltar ao Inventário",detail_quote:"Solicitar Cotação",detail_contact:"Contate-nos"},
+  fr:{nav_about:"À Propos",nav_services:"Services",nav_inventory:"Inventaire",nav_contact:"Contactez-nous",hero_label:"Votre Partenaire Mondial de Confiance en Machines",hero_h1a:"Équipements Lourds",hero_h1b:"Pour l'Export",hero_sub:"Votre source de confiance pour des machines de construction, minières et industrielles de haute qualité — exportées dans le monde entier.",hero_btn1:"Voir l'Inventaire",hero_btn2:"Obtenir un Devis",stat1_label:"Annonces Actives",stat2_label:"Douanes Plus Rapides",stat3_label:"Couverture Export",scroll_text:"Défiler",about_label:"Qui Sommes-Nous",about_title:"Votre Partenaire<br>Mondial de Confiance",about_p1:"Bienvenue chez Machinery 4 Export, votre partenaire mondial de confiance en solutions de machines.",about_p2:"Basés à Boca Raton, Floride, nous mettons en relation des acheteurs de toute l'Amérique avec des équipements lourds premium.",feat1_title:"Équipements Vérifiés",feat1_desc:"Chaque machine inspectée et documentée",feat2_title:"Couverture Amériques",feat2_desc:"Livraison sur tous les marchés d'Amérique du Sud",feat3_title:"Documentation Complète",feat3_desc:"Papiers de douane et conformité complets",feat4_title:"Assuré et Financé",feat4_desc:"Partenariats avec des agences de crédit export",svc_label:"Ce Que Nous Faisons",svc_title:"Services d'Exportation",svc_btn:"Consulter Maintenant",svc1_title:"Export Complet",svc1_desc:"Nous gérons tous les aspects de l'exportation de machines de porte au port.",svc1_cta:"Logistique complète",svc2_title:"Portée Mondiale",svc2_desc:"Exportation de machines vers les pays des Amériques.",svc2_cta:"Couverture pan-américaine",svc3_title:"Dédouanement",svc3_desc:"Navigation experte dans les réglementations douanières. Réduction de 20% du temps de dédouanement.",svc3_cta:"Dédouanement rapide",svc4_title:"Assurance et Financement",svc4_desc:"Assurance export et options de financement via des partenariats avec des agences de crédit.",svc4_cta:"Transactions sécurisées",inv_label:"Disponible Maintenant",inv_title:"Inventaire d'Équipements",inv_sub:"Parcourez notre sélection actuelle d'équipements lourds disponibles à l'export.",inv_count_label:"unités disponibles",filter_all:"Tous",filter_exc:"Excavateurs",filter_ldr:"Chargeurs",filter_fkl:"Chariots",filter_veh:"Véhicules",filter_str:"Structures",inquire:"Renseignez-vous",reach_label:"Notre Portée",reach_title:"Réseau Pan-Américain",reach_p1:"Depuis notre base à Boca Raton, nous connectons des clients de toute l'Amérique.",reach_p2:"Spécialisés dans les envois vers les opérations minières et de construction en Amérique du Sud.",reach_s1:"Zone de Service",reach_s2:"Douanes Rapides",reach_s3:"Annonces Actuelles",contact_label:"Contactez-Nous",contact_title:"Prêt à Exporter?",c_phone_label:"Téléphone",c_email_label:"E-mail",c_addr_label:"Adresse",form_title:"Demander un Devis",form_name:"Nom Complet",form_name_ph:"Votre nom",form_email:"Adresse E-mail",form_email_ph:"votre@email.com",form_company:"Entreprise / Pays",form_company_ph:"Nom de l'entreprise et pays",form_equip:"Équipement Requis",form_equip_ph:"Décrivez la machine ou l'équipement recherché...",form_submit:"Envoyer la Demande",footer_copy:"© 2026 Machinery 4 Export · Boca Raton, FL USA · Tous droits réservés",notif_title:"Devis Demandé!",notif_msg:"Nous vous contacterons dans 24 heures.",back_inv:"Retour à l'Inventaire",detail_quote:"Demander un Devis",detail_contact:"Contactez-nous"},
+  zh:{nav_about:"关于我们",nav_services:"服务",nav_inventory:"库存",nav_contact:"联系我们",hero_label:"您值得信赖的全球机械合作伙伴",hero_h1a:"重型设备",hero_h1b:"出口专家",hero_sub:"为您提供高品质建筑、矿山和工业机械设备，精准高效地出口至全球各地。",hero_btn1:"浏览库存",hero_btn2:"获取报价",stat1_label:"在售设备",stat2_label:"更快清关",stat3_label:"出口覆盖范围",scroll_text:"滚动",about_label:"关于我们",about_title:"您值得信赖的<br>全球合作伙伴",about_p1:"欢迎来到 Machinery 4 Export，您可信赖的全球机械解决方案合作伙伴。",about_p2:"我们总部位于佛罗里达州博卡拉顿，专注于为美洲各地买家提供优质重型设备。",feat1_title:"设备认证",feat1_desc:"每台机器均经过检验和记录",feat2_title:"美洲覆盖",feat2_desc:"发货至南美洲所有市场",feat3_title:"完整文件",feat3_desc:"海关及合规文件齐全",feat4_title:"保险与融资",feat4_desc:"与出口信贷机构建立合作关系",svc_label:"我们的业务",svc_title:"出口服务",svc_btn:"立即咨询",svc1_title:"一站式出口",svc1_desc:"我们处理机械出口的所有方面，包括文件、物流协调和合规监管。",svc1_cta:"全方位物流",svc2_title:"全球覆盖",svc2_desc:"向美洲各国出口机械。专注于向南美矿业和建筑作业运输重型设备。",svc2_cta:"全美洲覆盖",svc3_title:"海关清关",svc3_desc:"熟练应对不同国家复杂的海关法规，平均可将清关时间缩短20%。",svc3_cta:"更快清关",svc4_title:"保险与融资",svc4_desc:"通过与领先出口信贷机构的合作，提供出口保险和融资选项。",svc4_cta:"安全交易",inv_label:"即刻可售",inv_title:"设备库存",inv_sub:"浏览我们当前可出口的重型设备库存。所有设备均已准备好检验并备有完整文件。",inv_count_label:"台设备在售",filter_all:"全部",filter_exc:"挖掘机",filter_ldr:"装载机",filter_fkl:"叉车",filter_veh:"车辆",filter_str:"结构件",inquire:"询价",reach_label:"我们的覆盖范围",reach_title:"泛美出口网络",reach_p1:"从我们在佛罗里达州博卡拉顿的总部，我们将南北美洲的客户与他们所需的重型设备连接起来。",reach_p2:"我们专注于向南美洲矿业和建筑作业运输，深刻理解跨境机械出口的物流和法规。",reach_s1:"服务范围",reach_s2:"更快清关",reach_s3:"当前列表",contact_label:"联系我们",contact_title:"准备好出口了吗？",c_phone_label:"电话",c_email_label:"邮箱",c_addr_label:"地址",form_title:"申请报价",form_name:"全名",form_name_ph:"您的姓名",form_email:"电子邮件地址",form_email_ph:"your@email.com",form_company:"公司 / 国家",form_company_ph:"公司名称和国家",form_equip:"所需设备",form_equip_ph:"请描述您需要的机械或设备...",form_submit:"发送询价",footer_copy:"© 2026 Machinery 4 Export · 美国佛罗里达州博卡拉顿 · 保留所有权利",notif_title:"询价已发送！",notif_msg:"我们将在24小时内与您联系。",back_inv:"返回库存",detail_quote:"申请报价",detail_contact:"联系我们"}
+};
+
+var currentLang="en",activePage="home",currentFilter="all";
+
+function showPage(page){
+  document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active");});
+  document.getElementById("page-"+page).classList.add("active");
+  activePage=page;
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(page==="inventory") renderInventory();
+}
+
+function renderInventory(filter){
+  if(filter!==undefined) currentFilter=filter;
+  var grid=document.getElementById("invGrid");
+  var t=T[currentLang];
+  var filtered=currentFilter==="all"?PRODUCTS:PRODUCTS.filter(function(p){return p.cat===currentFilter;});
+  document.getElementById("visibleCount").textContent=filtered.length;
+  grid.innerHTML=filtered.map(function(p){
+    var mainImg=p.imgs&&p.imgs.length?'<img src="'+p.imgs[0]+'" alt="'+p.title+'" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\'">'+(CAT_ICONS[p.cat]||CAT_ICONS.loader):'<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%">'+(CAT_ICONS[p.cat]||CAT_ICONS.loader)+'</div>';
+    var catLabel=p.cat.charAt(0).toUpperCase()+p.cat.slice(1);
+    return '<div class="product-card" onclick="showDetail('+p.id+')">'+
+      '<div class="product-img">'+mainImg+'<span class="product-tag">'+p.tag+'</span></div>'+
+      '<div class="product-info"><h4>'+p.title+'</h4>'+
+      '<div class="product-meta">'+p.brand+' · '+p.year+' · '+catLabel+'</div>'+
+      '<div class="product-cta"><button class="inquire-btn">'+t.inquire+' <span class="inquire-arrow">&#8594;</span></button></div>'+
+      '</div></div>';
+  }).join("");
+  document.querySelectorAll(".filter-btn").forEach(function(b){
+    b.classList.toggle("active",b.dataset.cat===currentFilter);
+  });
+}
+
+document.getElementById("page-inventory").addEventListener("click",function(e){
+  var btn=e.target.closest(".filter-btn");
+  if(btn) renderInventory(btn.dataset.cat);
+});
+
+function showDetail(id){
+  var p=PRODUCTS.find(function(x){return x.id===id;});
+  if(!p) return;
+  document.getElementById("detailTag").textContent=p.tag;
+  document.getElementById("detailBrand").textContent=p.brand+" · "+p.year;
+  document.getElementById("detailTitle").textContent=p.title;
+  document.getElementById("detailDesc").textContent=p.desc;
+
+  // Build image gallery
+  var imgs=p.imgs&&p.imgs.length?p.imgs:[];
+  var mainSrc=imgs.length?imgs[0]:"";
+  var imgBox=document.getElementById("detailImg");
+  var galleryHTML='';
+  if(mainSrc){
+    galleryHTML='<img id="detailMainImg" src="'+mainSrc+'" alt="'+p.title+'" style="width:100%;height:100%;object-fit:cover;display:block;">';
+  } else {
+    galleryHTML=(CAT_ICONS[p.cat]||CAT_ICONS.loader);
+  }
+  galleryHTML+='<span class="detail-tag">'+p.tag+'</span>';
+  imgBox.innerHTML=galleryHTML;
+
+  // Thumbnails
+  var thumbsEl=document.getElementById("detailThumbs");
+  if(imgs.length>1){
+    thumbsEl.style.display="flex";
+    thumbsEl.innerHTML=imgs.map(function(src,i){
+      return '<img src="'+src+'" onclick="switchDetailImg(\''+src+'\')" style="width:70px;height:52px;object-fit:cover;cursor:pointer;border:2px solid '+(i===0?'var(--gold)':'var(--steel)')+';flex-shrink:0;transition:border-color .2s;" onmouseover="this.style.borderColor=\'var(--gold)\'" onmouseout="this.style.borderColor=this.src.includes(document.getElementById(\'detailMainImg\')&&document.getElementById(\'detailMainImg\').src)?\'var(--gold)\':\'var(--steel)\'">';
+    }).join("");
+  } else {
+    thumbsEl.style.display="none";
+    thumbsEl.innerHTML="";
+  }
+
+  var specsEl=document.getElementById("detailSpecs");
+  specsEl.innerHTML=Object.entries(p.specs).map(function(e){
+    return '<div class="spec-item"><div class="spec-label">'+e[0]+'</div><div class="spec-value">'+e[1]+'</div></div>';
+  }).join("");
+  showPage("detail");
+}
+
+function switchDetailImg(src){
+  var main=document.getElementById("detailMainImg");
+  if(main) main.src=src;
+  document.querySelectorAll("#detailThumbs img").forEach(function(th){
+    th.style.borderColor=th.src.endsWith(src.split("/").pop())?"var(--gold)":"var(--steel)";
+  });
+}
+
+function showNotif(){
+  var n=document.getElementById("notif");
+  n.classList.add("show");
+  setTimeout(function(){n.classList.remove("show");},3500);
+}
+document.getElementById("quoteBtn").addEventListener("click",showNotif);
+document.getElementById("formSubmit").addEventListener("click",showNotif);
+
+function applyLang(lang){
+  var t=T[lang];
+  if(!t) return;
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    var k=el.dataset.i18n;
+    if(t[k]!==undefined) el.innerHTML=t[k];
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(function(el){
+    var k=el.dataset.i18nPh;
+    if(t[k]!==undefined) el.placeholder=t[k];
+  });
+  if(activePage==="inventory") renderInventory();
+}
+
+var langToggle=document.getElementById("langToggle");
+var langDropdown=document.getElementById("langDropdown");
+var currentLangEl=document.getElementById("currentLang");
+var transBar=document.getElementById("transBar");
+var langLabels={en:"EN",es:"ES",pt:"PT",fr:"FR",zh:"中文"};
+
+langToggle.addEventListener("click",function(e){
+  e.stopPropagation();
+  langDropdown.classList.toggle("open");
+  langToggle.classList.toggle("active");
+});
+document.addEventListener("click",function(){
+  langDropdown.classList.remove("open");
+  langToggle.classList.remove("active");
+});
+document.querySelectorAll(".lang-option").forEach(function(opt){
+  opt.addEventListener("click",function(e){
+    e.stopPropagation();
+    var lang=opt.dataset.lang;
+    if(lang===currentLang){langDropdown.classList.remove("open");langToggle.classList.remove("active");return;}
+    transBar.classList.remove("done");transBar.classList.add("run");
+    setTimeout(function(){
+      applyLang(lang);
+      currentLangEl.textContent=langLabels[lang];
+      document.querySelectorAll(".lang-option").forEach(function(o){o.classList.remove("selected");});
+      opt.classList.add("selected");
+      langDropdown.classList.remove("open");langToggle.classList.remove("active");
+      transBar.classList.remove("run");transBar.classList.add("done");
+      setTimeout(function(){transBar.classList.remove("done");},400);
+    },320);
+  });
+});
+
+window.addEventListener("scroll",function(){
+  document.getElementById("mainNav").style.borderBottomColor=window.scrollY>60?"rgba(200,146,42,0.3)":"rgba(200,146,42,0.15)";
+});
+
+var observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){e.target.style.opacity="1";e.target.style.transform="translateY(0)";}
+  });
+},{threshold:0.1});
+document.querySelectorAll(".service-card,.reach-stat,.feature-item").forEach(function(el){
+  el.style.opacity="0";el.style.transform="translateY(20px)";el.style.transition="opacity .5s ease,transform .5s ease";
+  observer.observe(el);
+});
+
+renderInventory();
+</script>
+</body>
+</html>
